@@ -29,8 +29,15 @@ public class Hello extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html");
-		PrintWriter pw = response.getWriter();
-		pw.println("<h1>Hello?</h1>");
+		response.setCharacterEncoding("utf-8");
+		PrintWriter print = response.getWriter();
+		print.append("Hello! Can I have your name?");
+		String inputName = "<form method = POST>"
+				+ "<lable> My name is: </lable>"
+				+ "<input type = \"text\" name =\"mName\">"
+				+ "<input type = \"submit\" value =\"Send\">"
+				+ "</form>";
+		print.append(inputName);
 	}
 
 	/**
@@ -39,6 +46,7 @@ public class Hello extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
 	}
 
 }
