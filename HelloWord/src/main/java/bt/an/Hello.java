@@ -32,7 +32,7 @@ public class Hello extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		PrintWriter print = response.getWriter();
 		print.append("Hello! Can I have your name?");
-		String inputName = "<form method = POST>"
+		String inputName = "<form method = POST action=\"/HelloWord/Hello\">"
 				+ "<lable> My name is: </lable>"
 				+ "<input type = \"text\" name =\"mName\">"
 				+ "<input type = \"submit\" value =\"Send\">"
@@ -46,7 +46,13 @@ public class Hello extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		
+		response.setContentType("text/html");
+		response.setCharacterEncoding("utf-8");
+		String valueName = request.getParameter("mName");
+		PrintWriter print = response.getWriter();
+		print.append("<h1>Hello "
+				+ valueName
+				+ "</h1>");
 	}
 
 }
