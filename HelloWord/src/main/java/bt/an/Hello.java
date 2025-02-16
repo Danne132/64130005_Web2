@@ -45,7 +45,6 @@ public class Hello extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
 		response.setContentType("text/html");
 		response.setCharacterEncoding("utf-8");
 		String valueName = request.getParameter("mName");
