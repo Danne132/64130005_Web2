@@ -33,9 +33,9 @@ public class BMI extends HttpServlet {
 		PrintWriter print = response.getWriter();
 		print.append("BMI Calculator");
 		String inputName = "<form method = POST action=\"/BMI/BMI\">"
-				+ "<lable> Weight: </lable>"
+				+ "<lable> Cân nặng: </lable>"
 				+ "<input type = \"text\" name =\"weight\">"
-				+ "<lable> Height: </lable>"
+				+ "<lable> Chiều cao: </lable>"
 				+ "<input type = \"text\" name =\"height\">"
 				+ "<input type = \"submit\" value =\"Send\">"
 				+ "</form>";
@@ -56,11 +56,15 @@ public class BMI extends HttpServlet {
 		float weight = Float.parseFloat(valueWeight);
 		float BMI = weight / (height * height);
 		PrintWriter print = response.getWriter();
-		
+		print.append("Bạn đang "
+				+ checkBMI(BMI));
 	}
 	
 	private String checkBMI(float BMI) {
-		if(BMI)
+		if(BMI >= 30) return "Béo phì";
+		else if (BMI >= 25) return "Thừa cân";
+		else if (BMI >= 18.5f) return "Bình thường";
+		else return "Gầy";
 	}
 
 }
