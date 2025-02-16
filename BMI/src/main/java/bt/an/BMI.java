@@ -31,15 +31,25 @@ public class BMI extends HttpServlet {
 		response.setContentType("text/html");
 		response.setCharacterEncoding("utf-8");
 		PrintWriter print = response.getWriter();
-		print.append("BMI Calculator");
-		String inputName = "<form method = POST action=\"/BMI/BMI\">"
-				+ "<lable> Cân nặng: </lable>"
-				+ "<input type = \"text\" name =\"weight\">"
-				+ "<lable> Chiều cao: </lable>"
-				+ "<input type = \"text\" name =\"height\">"
-				+ "<input type = \"submit\" value =\"Send\">"
-				+ "</form>";
-		print.append(inputName);
+		String styles = "<style>"
+	            + "body { font-family: Arial, sans-serif; background-color: #f4f4f4; text-align: center; }"
+	            + "form { background: white; padding: 20px; border-radius: 10px; width: 300px; margin: 50px auto; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); }"
+	            + "label { font-weight: bold; display: block; margin-top: 10px; }"
+	            + "input[type='text'] { width: 100%; padding: 8px; margin: 5px 0; border: 1px solid #ccc; border-radius: 5px; }"
+	            + "input[type='submit'] { background: #28a745; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; width: 100%; }"
+	            + "input[type='submit']:hover { background: #218838; }"
+	            + "</style>";
+
+	    print.append("<html><head><title>BMI Calculator</title>" + styles + "</head><body>");
+	    print.append("<h2>BMI Calculator</h2>");
+	    print.append("<form method='POST' action='/BMI/BMI'>"
+	            + "<label>Cân nặng (kg):</label>"
+	            + "<input type='text' name='weight' placeholder='Nhập cân nặng'>"
+	            + "<label>Chiều cao (m):</label>"
+	            + "<input type='text' name='height' placeholder='Nhập chiều cao'>"
+	            + "<input type='submit' value='Tính BMI'>"
+	            + "</form>");
+	    print.append("</body></html>");
 	}
 
 	/**
