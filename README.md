@@ -12,5 +12,6 @@
 
 ## Kết quả một số bài tập đã làm
 ### 1. Web About Me
-<image style='width:10, height: auto' src='https://github.com/user-attachments/assets/8f4268a9-1714-43d5-aa3a-75f297c944a3'/>
+![image](https://github.com/user-attachments/assets/e23e1002-9135-4cd8-bdc8-df0e287cdd28)
+
 
