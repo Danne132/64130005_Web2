@@ -48,6 +48,19 @@ public class BMI extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		response.setContentType("text/html");
+		response.setCharacterEncoding("utf-8");
+		String valueHeight = request.getParameter("height");
+		String valueWeight = request.getParameter("weight");
+		float height = Float.parseFloat(valueHeight);
+		float weight = Float.parseFloat(valueWeight);
+		float BMI = weight / (height * height);
+		PrintWriter print = response.getWriter();
+		
+	}
+	
+	private String checkBMI(float BMI) {
+		if(BMI)
 	}
 
 }
