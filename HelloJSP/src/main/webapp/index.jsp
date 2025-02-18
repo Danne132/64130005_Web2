@@ -10,5 +10,11 @@
 <body>
 	<h1>Hù</h1>
 	<%= new Date().toString() %>
+	<%! int a = 10; %>
+	<b>
+	<% 
+		out.print(a);
+	%>
+	</b>
 </body>
 </html>
