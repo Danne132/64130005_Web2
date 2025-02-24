@@ -9,15 +9,15 @@
 <body>
 	<div class="container">
 		<img src="background.jpg" alt="image" class="login_bg">
-		<form action="UserProfile.html" class="login_form">
+		<form action="login.jsp" class="login_form">
 			<h1 class="login_title">Đăng nhập</h1>
 			<div class="login_inputs">
 				<div class="login_box">
-					<input type="email" placeholder="Nhập email của bạn" required class="login_input">
+					<input type="email" placeholder="Nhập email của bạn" name="email" required class="login_input">
                   	<i class="ri-mail-fill"></i>
 				</div>
 				<div class="login_box">
-					<input type="password" placeholder="Nhập password của bạn" required class="login_input">
+					<input type="password" placeholder="Nhập mật khẩu của bạn" name="password" required class="login_input">
                   	<i class="ri-lock-2-fill"></i>
 				</div>
 			</div>
@@ -30,7 +30,6 @@
 
                <a href="#" class="login_forgot">Quên mật khẩu?</a>
             </div>
-
             <button type="submit" class="login_button">Đăng nhập</button>
 
             <div class="login_register">
