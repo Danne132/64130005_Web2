@@ -19,7 +19,10 @@
 ### 2. Web Login
 [Link bài tập ở đây](LoginPage)
 
-![image](https://github.com/user-attachments/assets/8bbec9f1-1b31-47c0-9440-0c5d4118cac8)
+|Hình ảnh 1|Hình ảnh 2|
+|:---------|:---------|
+|![image](https://github.com/user-attachments/assets/8bbec9f1-1b31-47c0-9440-0c5d4118cac8)|![image](https://github.com/user-attachments/assets/941bef58-ab37-49b4-99fe-2d51c54dd22b)|
+
 
 
 
