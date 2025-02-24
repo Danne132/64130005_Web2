@@ -12,6 +12,14 @@
 
 ## Kết quả một số bài tập đã làm
 ### 1. Web About Me
+[Link bài tập ở đây](AboutMe)
+
 ![image](https://github.com/user-attachments/assets/e23e1002-9135-4cd8-bdc8-df0e287cdd28)
+
+### 2. Web Login
+[Link bài tập ở đây](LoginPage)
+
+![image](https://github.com/user-attachments/assets/8bbec9f1-1b31-47c0-9440-0c5d4118cac8)
+
 
 
