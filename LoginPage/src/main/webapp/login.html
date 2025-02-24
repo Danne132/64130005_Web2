@@ -10,6 +10,32 @@
 	<div class="container">
 		<img src="background.jpg" alt="image" class="login_bg">
 		<form action="UserProfile.html">
+			<h1 class="login_title">Login</h1>
+			<div class="login_inputs">
+				<div class="login_box">
+					<input type="email" placeholder="Nhập email của bạn" required class="login_input">
+                  	<i class="ri-mail-fill"></i>
+				</div>
+				<div class="login_box">
+					<input type="password" placeholder="Nhập password của bạn" required class="login_input">
+                  	<i class="ri-lock-2-fill"></i>
+				</div>
+			</div>
+			
+			<div class="login_check">
+               <div class="login_check-box">
+                  <input type="checkbox" class="login_check-input" id="user-check">
+                  <label for="user-check" class="login_check-label">Remember me</label>
+               </div>
+
+               <a href="#" class="login_forgot">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="login_button">Login</button>
+
+            <div class="login_register">
+               Don't have an account? <a href="#">Register</a>
+            </div>
 		</form>
 	</div>
 </body>

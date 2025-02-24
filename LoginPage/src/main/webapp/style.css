@@ -34,3 +34,20 @@ img{
   object-fit: cover;
   object-position: center;
 }
+
+.login__form {
+  position: relative;
+  margin-inline: 1.5rem;
+  background-color: hsla(0, 0%, 100%, .01);
+  border: 2px solid hsla(0, 0%, 100%, .7);
+  padding: 2.5rem 1rem;
+  color: var(--white-color);
+  border-radius: 1rem;
+  backdrop-filter: blur(16px);
+}
+
+.login__title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.25rem;
+}
