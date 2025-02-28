@@ -6,7 +6,7 @@
   <display-name>Archetype Created Web Application</display-name>
   <!-- DispatcherServlet -->
   <servlet>
-        <servlet-name>SpingMVC_ViDu_Bai1_Maven</servlet-name>
+        <servlet-name>HelloSpring</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
           <param-name>contextConfigLocation</param-name>
@@ -15,7 +15,7 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>SpingMVC_ViDu_Bai1_Maven</servlet-name>
+        <servlet-name>HelloSpring</servlet-name>
         <url-pattern>*.html</url-pattern>
     </servlet-mapping>
 </web-app>
