@@ -3,7 +3,7 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+  <display-name>Hello Spring</display-name>
   <!-- DispatcherServlet -->
   <servlet>
         <servlet-name>HelloSpring</servlet-name>
@@ -16,6 +16,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>HelloSpring</servlet-name>
-        <url-pattern>*.html</url-pattern>
+        <url-pattern>*.jsp</url-pattern>
     </servlet-mapping>
 </web-app>
