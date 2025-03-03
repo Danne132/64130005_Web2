@@ -6,10 +6,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController {
-	@RequestMapping("/display")
-	public ModelAndView getPage() {
-		ModelAndView m = new ModelAndView();
-		m.setViewName("welcome");
+//	@RequestMapping("/")
+//	public ModelAndView getPage() {
+//		ModelAndView m = new ModelAndView();
+//		m.setViewName("welcome");
+//		return m;
+//	}
+	@RequestMapping("/")
+	public String getPage() {
+		String m = "welcome";
 		return m;
 	}
 }
