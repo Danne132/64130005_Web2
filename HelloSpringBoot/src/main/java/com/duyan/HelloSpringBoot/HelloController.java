@@ -1,6 +1,8 @@
 package com.duyan.HelloSpringBoot;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,9 +12,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HelloController {
 	// Mỗi controller có một action
 	// Cần có một URL tương ứng để gọi cho action này
-	@RequestMapping("/hello") //Người dùng request đến địa chỉ /hello
-	public String helloBoot() {
-		// Code xử lý... 
+//	@RequestMapping("/hello") //Người dùng request đến địa chỉ /hello
+//	public String helloBoot() {
+//		// Code xử lý... 
+//		return "helloView";
+//	}
+	@GetMapping("/")
+	public String getMethodName(ModelMap model) {
+		model.addAttribute("name", "An");
 		return "helloView";
 	}
+	
 }
