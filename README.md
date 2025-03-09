@@ -14,7 +14,7 @@
 ### 1. Web About Me
 [Link bài tập ở đây](AboutMe)
 
-![image](https://github.com/user-attachments/assets/e23e1002-9135-4cd8-bdc8-df0e287cdd28)
+![image](https://github.com/user-attachments/assets/075dfd50-f58c-41a1-8bf7-128b9d8f27ec)
 
 ### 2. Web Login
 [Link bài tập ở đây](LoginPage)
