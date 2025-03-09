@@ -13,7 +13,7 @@ public class TDLController {
 		model.addAttribute("HoTen", "Hoàng Duy An");
 		model.addAttribute("NamSinh", "2004");
 		model.addAttribute("GioiTinh", "Nam");
-		return new String();
+		return "index";
 	}
 	
 }
