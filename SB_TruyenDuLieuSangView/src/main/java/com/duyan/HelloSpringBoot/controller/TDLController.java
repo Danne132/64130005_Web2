@@ -1,4 +1,4 @@
-package com.duyan.HelloSpringBoot;
+package com.duyan.HelloSpringBoot.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
