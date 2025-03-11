@@ -25,29 +25,9 @@
 
 ### 3. BT Truyền dữ liệu vào view
 [Link bài tập ở đây](https://github.com/Danne132/64130005_Web2/tree/9a3645fc5ef320e44cabf0aca244e774ca338085/SB_TruyenDuLieuSangView)
-<br/> 👉 Code mẫu <br/>
-_*Controller*_
-```java
-@GetMapping("/")
-public String getMethodName(ModelMap model) {
-  model.addAttribute("MSSV", "64130005");
-  model.addAttribute("HoTen", "Hoàng Duy An");
-  model.addAttribute("NamSinh", "2004");
-  model.addAttribute("GioiTinh", "Nam");
-  return "index";}
-```
-_*View*_
-```html
-<html xmlns:th="http://www.thymeleaf.org">
-<div class="container">
-  <div class = "content">
-    <div>MSSV: <span th:text=${MSSV}></span></div>
-    <div>Họ và Tên: <span th:text=${HoTen}></span></div>
-    <div>Năm sinh: <span th:text=${NamSinh}></span></div>
-    <div>Giới tính: <span th:text=${GioiTinh}></span></div>
-  </div> 
-</div>
-</html>
-```
+|Truyền một đối tượng|Truyền một danh sách|
+|:--------|:----------|
+|![image](https://github.com/user-attachments/assets/2a5e34d7-ee70-4924-948e-78529184d961)|![image](https://github.com/user-attachments/assets/afb02e5b-1bf1-45e5-9d22-a685d5d6b455)|
+
 
 
