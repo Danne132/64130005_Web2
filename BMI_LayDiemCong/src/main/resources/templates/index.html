@@ -2,22 +2,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>BMI Calculator</title>
 <link href="style.css" rel="stylesheet"/>
 </head>
 <body>
 	
-	<header>
-		<h1>Welome to BMI calculator website of Duy An!</h1>
-	</header>
-	<div class="container">
-		<div>
-			AAAA
-		</div>
-		<div>
-			AAAA
-		</div>
-	</div>
-	
+	<h2>Máy tính BMI</h2>
+    <form action="/calculate" method="post" th:object="${bmiRequest}">
+        <label>Chiều cao (cm):</label>
+        <input type="number" step="0.1" th:field="*{height}" required><br>
+
+        <label>Cân nặng (kg):</label>
+        <input type="number" step="0.1" th:field="*{weight}" required><br>
+
+        <label>Nhóm:</label>
+        <select th:field="*{asian}">
+            <option value="true">Châu Á</option>
+            <option value="false">Không phải Châu Á</option>
+        </select><br>
+
+        <button type="submit">Tính BMI</button>
+    </form>
+
+    <div th:if="${bmi != null}">
+        <h3>Kết quả:</h3>
+        <p>BMI: <span th:text="${#numbers.formatDecimal(bmi, 1, 2)}"></span></p>
+        <p>Phân loại: <span th:text="${category}"></span></p>
+    </div>
 </body>
 </html>

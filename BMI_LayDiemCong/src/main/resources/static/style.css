@@ -11,27 +11,34 @@ html{
 	height: 100vh;
 }
 
-header{
-	width: 100%;
-	height: 4rem;
-	display: flex;	
-	justify-content: center;
-	align-items: center;
-	background-color: #0289a0;
-	color: white;
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 50px;
 }
 
-header h1{
-	font-size: 2rem;
+form {
+    display: inline-block;
+    text-align: left;
+    background: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
 }
 
-.container{
-	width: 100%;
-	height: auto;
-	display: inline-grid;
-	grid-template-columns: repeat(2, 1fr); 
-	column-gap: 3rem;	
-	align-items: center;
-	justify-items: center;
-	padding: 3rem;
+input, select {
+    display: block;
+    margin: 10px 0;
+    padding: 5px;
+}
+
+button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #218838;
 }
