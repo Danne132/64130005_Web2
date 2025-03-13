@@ -18,8 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 	public String calculateBMI(ModelMap model, 
 			@RequestParam("weight") float weight,
 			@RequestParam("height") float height,
-			@RequestParam(name="isAsian", defaultValue = "", required = false) boolean isAsian) {
-		float bmi = calcBMI(weight, height);
+			@RequestParam(name="isAsian", defaultValue = "false", required = false) boolean isAsian) {
+		float mHeight = height/100;
+		float bmi = calcBMI(weight, mHeight);
 		String message = evaluate(bmi, isAsian);
 		float bmiFormat = Math.round(bmi * 100.0f) / 100.0f;
 		model.addAttribute("bmi", bmiFormat);
