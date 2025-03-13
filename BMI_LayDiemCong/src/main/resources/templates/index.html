@@ -1,29 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>BMI Calculator</title>
-<link href="style.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Máy tính BMI</title>
+    <link href="style.css" rel="stylesheet">
 </head>
 <body>
-	
-	<h2>Máy tính BMI</h2>
-    <form action="/calc" method="post">
-        <label>Chiều cao (cm):</label>
-        <input type="text" name="height" required><br>
+    <div class="container">
+        <div class="content">
+            <!-- Form nhập BMI -->
+            <div class="bmi_form_section">
+                <h2 class="bmi_title">Máy tính BMI</h2>
+                <form action="/calc" method="post" class="bmi_form">
+                    <label>Chiều cao (cm):</label>
+                    <input type="text" name="height" required class="bmi_input"><br>
 
-        <label>Cân nặng (kg):</label>
-        <input type="text" name="weight" required><br>
-        
-        <input type="checkbox" name="isAsian">Bạn là người Châu Á?</input>
+                    <label>Cân nặng (kg):</label>
+                    <input type="text" name="weight" required class="bmi_input"><br>
 
-        <button type="submit">Tính BMI</button>
-    </form>
+                    <div class="bmi_checkbox">
+                        <input type="checkbox" name="isAsian" id="asian-check">
+                        <label for="asian-check">Bạn là người Châu Á?</label>
+                    </div>
 
-    <div>
-        <h3>Kết quả:</h3>
-        <p>BMI: <span th:text=${bmi}></span></p>
-        <p>Phân loại: <span th:text=${message}></span></p>
+                    <button type="submit" class="bmi_button">Tính BMI</button>
+                </form>
+
+                <!-- Kết quả tính BMI -->
+                <div class="bmi_result">
+                    <h3>Kết quả:</h3>
+                    <p>BMI: <span th:text="${bmi}"></span></p>
+                    <p>Phân loại: <span th:text="${message}"></span></p>
+                </div>
+            </div>
+
+            <!-- Bảng phân loại BMI -->
+            <div class="bmi_section">
+                <h2>Bảng phân loại BMI</h2>
+                <div class="bmi_images">
+                    <div class="bmi_box">
+                        <h3>Châu Á</h3>
+                        <img src="bmi_asian.jpg" alt="Bảng BMI Châu Á" class="bmi_image">
+                    </div>
+                    <div class="bmi_box">
+                        <h3>Không phải Châu Á</h3>
+                        <img src="bmi_non_asian.jpg" alt="Bảng BMI Không Châu Á" class="bmi_image">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
