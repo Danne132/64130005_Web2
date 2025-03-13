@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css" crossorigin="">
+	<link rel="stylesheet" href="style.css">
+	<title>Login</title>
+</head>
+<body>
+	<div class="container">
+		<img src="background.jpg" alt="image" class="login_bg">
+		<form action="/login" class="login_form">
+			<h1 class="login_title">Đăng nhập</h1>
+			<div class="login_inputs">
+				<div class="login_box">
+					<input type="email" placeholder="Nhập email của bạn" name="email" required class="login_input">
+                  	<i class="ri-mail-fill"></i>
+				</div>
+				<div class="login_box">
+					<input type="password" placeholder="Nhập mật khẩu của bạn" name="password" required class="login_input">
+                  	<i class="ri-lock-2-fill"></i>
+				</div>
+			</div>
+			
+			<div class="login_check">
+               <div class="login_check-box">
+                  <input type="checkbox" class="login_check-input" id="user-check">
+                  <label for="user-check" class="login_check-label">Nhớ tôi</label>
+               </div>
+
+               <a href="#" class="login_forgot">Quên mật khẩu?</a>
+            </div>
+            <button type="submit" class="login_button">Đăng nhập</button>
+
+            <div class="login_register">
+               Chưa có tài khoản? <a href="#">Đăng ký ngay</a>
+            </div>
+		</form>
+	</div>
+</body>
+</html>
