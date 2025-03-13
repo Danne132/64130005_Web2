@@ -1,0 +1,37 @@
+@charset "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+}
+
+html{
+	width: 100%;
+	height: 100vh;
+}
+
+header{
+	width: 100%;
+	height: 4rem;
+	display: flex;	
+	justify-content: center;
+	align-items: center;
+	background-color: #0289a0;
+	color: white;
+}
+
+header h1{
+	font-size: 2rem;
+}
+
+.container{
+	width: 100%;
+	height: auto;
+	display: inline-grid;
+	grid-template-columns: repeat(2, 1fr); 
+	column-gap: 3rem;	
+	align-items: center;
+	justify-items: center;
+	padding: 3rem;
+}
