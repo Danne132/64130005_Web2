@@ -8,26 +8,22 @@
 <body>
 	
 	<h2>Máy tính BMI</h2>
-    <form action="/calculate" method="post" th:object="${bmiRequest}">
+    <form action="/calc" method="post">
         <label>Chiều cao (cm):</label>
-        <input type="number" step="0.1" th:field="*{height}" required><br>
+        <input type="text" name="height" required><br>
 
         <label>Cân nặng (kg):</label>
-        <input type="number" step="0.1" th:field="*{weight}" required><br>
-
-        <label>Nhóm:</label>
-        <select th:field="*{asian}">
-            <option value="true">Châu Á</option>
-            <option value="false">Không phải Châu Á</option>
-        </select><br>
+        <input type="text" name="weight" required><br>
+        
+        <input type="checkbox" name="isAsian">Bạn là người Châu Á?</input>
 
         <button type="submit">Tính BMI</button>
     </form>
 
-    <div th:if="${bmi != null}">
+    <div>
         <h3>Kết quả:</h3>
-        <p>BMI: <span th:text="${#numbers.formatDecimal(bmi, 1, 2)}"></span></p>
-        <p>Phân loại: <span th:text="${category}"></span></p>
+        <p>BMI: <span th:text=${bmi}></span></p>
+        <p>Phân loại: <span th:text=${message}></span></p>
     </div>
 </body>
 </html>
