@@ -3,49 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Máy tính BMI</title>
+    <title>BMI Calculator</title>
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <div class="content">
             <!-- Form nhập BMI -->
-            <div class="bmi_form_section">
-                <h2 class="bmi_title">Máy tính BMI</h2>
-                <form action="/calc" method="post" class="bmi_form">
-                    <label>Chiều cao (cm):</label>
-                    <input type="text" name="height" required class="bmi_input"><br>
-
-                    <label>Cân nặng (kg):</label>
-                    <input type="text" name="weight" required class="bmi_input"><br>
-
-                    <div class="bmi_checkbox">
-                        <input type="checkbox" name="isAsian" id="asian-check">
-                        <label for="asian-check">Bạn là người Châu Á?</label>
+            <div class="bmi-form-section">
+                <h2 class="bmi-title">BMI Calculator</h2>
+                <form action="/calc" method="post" class="bmi-form">
+                    <div class="bmi-input-group">
+                        <label for="height">Height (cm):</label>
+                        <input type="text" id="height" name="height" required class="bmi-input">
                     </div>
 
-                    <button type="submit" class="bmi_button">Tính BMI</button>
+                    <div class="bmi-input-group">
+                        <label for="weight">Weight (kg):</label>
+                        <input type="text" id="weight" name="weight" required class="bmi-input">
+                    </div>
+
+                    <div class="bmi-checkbox">
+                        <input type="checkbox" name="isAsian" id="asian-check">
+                        <label for="asian-check">Are you an Asian?</label>
+                    </div>
+
+                    <button type="submit" class="bmi-button">Calculate</button>
                 </form>
 
                 <!-- Kết quả tính BMI -->
-                <div class="bmi_result">
-                    <h3>Kết quả:</h3>
-                    <p>BMI: <span th:text="${bmi}"></span></p>
-                    <p>Phân loại: <span th:text="${message}"></span></p>
+                <div class="bmi-result">
+                    <h3>Result:</h3>
+                    <p>Your BMI: <span th:text="${bmi}"></span></p>
+                    <p>Evaluate: <span th:text="${message}"></span></p>
                 </div>
             </div>
 
             <!-- Bảng phân loại BMI -->
-            <div class="bmi_section">
-                <h2>Bảng phân loại BMI</h2>
-                <div class="bmi_images">
-                    <div class="bmi_box">
-                        <h3>Châu Á</h3>
-                        <img src="bmi_asian.jpg" alt="Bảng BMI Châu Á" class="bmi_image">
+            <div class="bmi-section">
+                <h2>BMI table</h2>
+                <div class="bmi-images">
+                    <div class="bmi-box">
+                        <h3>For Asian</h3>
+                        <img src="bmi-asian.png" alt="Bảng BMI Châu Á" class="bmi-image">
                     </div>
-                    <div class="bmi_box">
-                        <h3>Không phải Châu Á</h3>
-                        <img src="bmi_non_asian.jpg" alt="Bảng BMI Không Châu Á" class="bmi_image">
+                    <div class="bmi-box">
+                        <h3>Regular</h3>
+                        <img src="bmi-regular.png" alt="Bảng BMI Không Châu Á" class="bmi-image">
                     </div>
                 </div>
             </div>

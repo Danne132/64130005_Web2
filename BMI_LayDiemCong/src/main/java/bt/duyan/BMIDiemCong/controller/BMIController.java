@@ -34,16 +34,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 	
 	private String evaluate(float bmi, boolean isAsian) {
 		if(isAsian) {
-			if (bmi < 18.5) return "Gầy";
-            else if (bmi < 23) return "Bình thường";
-            else if (bmi < 27.5) return "Thừa cân";
-            else return "Béo phì";
+			if (bmi < 18.5) return "Underweight";
+            if (bmi < 23) return "Normal";
+            if (bmi < 25) return "Overweight";
+            if (bmi < 30) return "Obesity I";
+            else return "Obesity II";
 		}
 		else {
-            if (bmi < 18.5) return "Gầy";
-            else if (bmi < 25) return "Bình thường";
-            else if (bmi < 30) return "Thừa cân";
-            else return "Béo phì";
+            if (bmi < 18.5) return "Underweight";
+            else if (bmi < 25) return "Normal";
+            else if (bmi < 30) return "Overweight";
+            else return "Obesity";
         }
 	}
 }
