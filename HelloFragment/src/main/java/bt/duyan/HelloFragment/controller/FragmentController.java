@@ -8,6 +8,6 @@ public class FragmentController {
 	
 	@GetMapping("/")
 	public String getView() {
-		return "index";
+		return "front_end_view/index";
 	}
 }
