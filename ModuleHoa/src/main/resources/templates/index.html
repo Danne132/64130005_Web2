@@ -2,9 +2,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Module Hóa</title>
+<link href="style.css" rel="stylesheet">
 </head>
 <body>
-
+	<div th:replace="fragment :: header"></div>
+	<div class="container">
+		<div th:replace="fragment :: navbar"></div>
+		<div class="container-content">
+			Content
+		</div>
+	</div>
+	<div th:replace="fragment :: footer"></div>
 </body>
 </html>
