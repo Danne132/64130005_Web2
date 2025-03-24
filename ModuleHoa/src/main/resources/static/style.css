@@ -247,6 +247,7 @@ span{
 
 /* Tiêu đề */
 .bmi-title {
+	font-size: 3rem;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -271,7 +272,8 @@ span{
     flex: 1;
     text-align: left;
     font-weight: bold;
-    margin: 10px;
+    font-size: 1.5rem;
+    margin: 10px 10px 10px 0;
 }
 
 .bmi-input {
@@ -288,6 +290,10 @@ span{
     align-items: center;
     gap: 10px;
     margin: 10px 0;
+}
+
+.bmi-checkbox label{
+	font-size: 1.5rem;
 }
 
 /* Button */
@@ -314,7 +320,7 @@ span{
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    font-size: 1.5rem;
 }
 
 /* Khu vực hiển thị bảng BMI */
@@ -322,11 +328,11 @@ span{
     text-align: center;
     background: #fff;
     padding: 20px;
-    padding-top: 0;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
+    font-size: 2rem;
 }
 
 /* Box chứa từng bảng BMI */
@@ -335,8 +341,9 @@ span{
 }
 
 .bmi-box h3{
-	margin-top: 0;
-	margin-bottom: 20px;
+	font-size: 1.5rem;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 /* Ảnh BMI */
@@ -354,6 +361,13 @@ span{
 }
 
 .footer{
+	width: 100%;
+	height: 3rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: black;
+	color: white;
 	position: absolute;
 	bottom: 0;
 }
