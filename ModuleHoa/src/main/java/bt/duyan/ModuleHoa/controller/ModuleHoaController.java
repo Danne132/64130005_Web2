@@ -8,7 +8,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ModuleHoaController {
 	
 	@GetMapping("/")
-	public String getMethod(ModelMap model) {
-		return "index";
-	}
+    public String home() {
+        return "index";
+    }
+
+    @GetMapping("/about")
+    public String about() {
+        return "about";
+    }
+
+    @GetMapping("/contact")
+    public String contact() {
+        return "contact";
+    }
 }
