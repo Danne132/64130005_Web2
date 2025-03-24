@@ -7,7 +7,10 @@
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-	<section class='home' id='home'>
+	<!-- Nhúng Navbar -->
+    <div th:replace="fragment :: navbar"></div>
+
+    <section class='home' id='home'>
         <div class='home-content'>
             <h1>Hi, It's <span>An</span></h1>
             <h3 class='text-animation'>I'm an <span>IT Student</span></h3>
@@ -35,5 +38,7 @@
             <img src='duyan.jpg' alt=''>
         </div>
     </section>
+	
+	<div th:replace="fragment :: footer"></div>
 </body>
 </html>

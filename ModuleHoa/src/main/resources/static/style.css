@@ -224,6 +224,140 @@ span{
     position: relative;
 }
 
+.container {
+    padding: 30px;	
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10rem;
+}
+
+/* Chia layout thành 2 phần */
+.bmi-content {
+    display: flex;
+    align-items: start;
+    gap: 40px;
+}
+
+/* Khu vực form nhập BMI */
+.bmi-form-section {
+    width: auto;
+}
+
+/* Tiêu đề */
+.bmi-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form */
+.bmi-form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Nhóm label & input */
+.bmi-input-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.bmi-input-group label {
+    flex: 1;
+    text-align: left;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.bmi-input {
+    flex: 2;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Checkbox */
+.bmi-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+/* Button */
+.bmi-button {
+    width: 100%;
+    background: linear-gradient(to right, #74ebd5, #acb6e5);
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.bmi-button:hover {
+   	transform: scale(1.1);
+}
+
+/* Kết quả */
+.bmi-result {
+    margin-top: 20px;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Khu vực hiển thị bảng BMI */
+.bmi-section {
+    text-align: center;
+    background: #fff;
+    padding: 20px;
+    padding-top: 0;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Box chứa từng bảng BMI */
+.bmi-box {
+    text-align: center;
+}
+
+.bmi-box h3{
+	margin-top: 0;
+	margin-bottom: 20px;
+}
+
+/* Ảnh BMI */
+.bmi-image {
+    width: 250px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bmi-image:hover {
+    transform: scale(1.1); /* Phóng to ảnh khi hover */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3); /* Tạo hiệu ứng bóng */
+}
+
+.footer{
+	position: absolute;
+	bottom: 0;
+}
+
 
 
 

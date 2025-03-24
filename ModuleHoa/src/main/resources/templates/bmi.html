@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="fragment :: navbar"></div>
+	<div class="container">
+        <div class="bmi-content">
+            <!-- Form nhập BMI -->
+            <div class="bmi-form-section">
+                <h2 class="bmi-title">BMI Calculator</h2>
+                <form action="/calc" method="post" class="bmi-form">
+                    <div class="bmi-input-group">
+                        <label for="height">Height (cm):</label>
+                        <input type="text" id="height" name="height" required class="bmi-input">
+                    </div>
+
+                    <div class="bmi-input-group">
+                        <label for="weight">Weight (kg):</label>
+                        <input type="text" id="weight" name="weight" required class="bmi-input">
+                    </div>
+
+                    <div class="bmi-checkbox">
+                        <input type="checkbox" name="isAsian" id="asian-check">
+                        <label for="asian-check">Are you an Asian?</label>
+                    </div>
+
+                    <button type="submit" class="bmi-button">Calculate</button>
+                </form>
+
+                <!-- Kết quả tính BMI -->
+                <div class="bmi-result">
+                    <h3>Result:</h3>
+                    <p>Your BMI: <span th:text="${bmi}"></span></p>
+                    <p>Evaluate: <span th:text="${message}"></span></p>
+                </div>
+            </div>
+
+            <!-- Bảng phân loại BMI -->
+            <div class="bmi-section">
+                <h2>BMI table</h2>
+                <div class="bmi-images">
+                    <div class="bmi-box">
+                        <h3>For Asian</h3>
+                        <img src="bmi-asian.png" alt="Bảng BMI Châu Á" class="bmi-image">
+                    </div>
+                    <div class="bmi-box">
+                        <h3>Regular</h3>
+                        <img src="bmi-regular.png" alt="Bảng BMI Không Châu Á" class="bmi-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div th:replace="fragment :: footer"></div>
+</body>
+</html>
