@@ -3,33 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="style.css" rel="stylesheet">
 </head>
 <body>
 	<div th:fragment="navbar">
-    	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        	<div class="container-fluid">
-            	<a class="navbar-brand" href="#">💥Duy An</a>
-            	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                	<span class="navbar-toggler-icon"></span>
-            	</button>
-            	<div class="collapse navbar-collapse" id="navbarNav">
-                	<ul class="navbar-nav">
-                    	<li class="nav-item">
-                        	<a class="nav-link" th:href="@{/}">Trang chủ</a>
-                    	</li>
-                    	<li class="nav-item">
-                        	<a class="nav-link" th:href="@{/about}">About</a>
-                    	</li>
-                    	<li class="nav-item">
-                        	<a class="nav-link" th:href="@{/contact}">Liên lạc</a>
-                    	</li>
-                	</ul>
-            	</div>
-        	</div>
-    	</nav>
+    	<header class='header'>
+			<a href='#' class='logo'>
+				Hoàng Duy
+				<span>An</span>
+			</a>
+			<nav class='navbar'>
+            	<a href='#home' id='active'>Home</a>
+            	<a href='#education'>Education</a>
+            	<a href='#services'>Services</a>
+            	<a href='#contact'>Contact</a>
+        	</nav>
+		</header>
 	</div>
 
+	<div th:fragment="footer">
+    	<footer class="footer bg-dark text-white text-center py-3 mt-auto fixed-bottom">
+        	<p>&copy; 2025 Copyright by Duy An</p>
+    	</footer>
 	</div>
+
+	
 </body>
 </html>

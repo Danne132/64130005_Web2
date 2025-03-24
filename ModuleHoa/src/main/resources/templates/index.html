@@ -2,19 +2,44 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Home</title>
-    <link rel="stylesheet" 
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="style.css" rel="stylesheet">
 </head>
 <body>
 
     <!-- Nhúng Navbar -->
     <div th:replace="fragment :: navbar"></div>
 
-    <div class="container mt-5">
-        <h1>Welcome to My Website</h1>
-        <p>This is the homepage.</p>
-    </div>
+    <section class='home' id='home'>
+        <div class='home-content'>
+            <h1>Hi, It's <span>An</span></h1>
+            <h3 class='text-animation'>I'm an <span>IT Student</span></h3>
+            <p>I'm studying at Information Technology falcuty in Nha Trang University. 
+            I aim to be a frontend developer in the future. I'm passionate about
+            frontend technologies and love creating beautiful and functional user 
+            interfaces. I am constantly learning and improving my skills to stay 
+            updated with the latest trends in web development. I am looking for opportunities 
+            to work on exciting projects and collaborate with other talented developers. 
+            </p>
 
+            <div class='social-icons'>
+                <a href='#'><i class='bx bxl-linkedin' ></i></a>
+                <a href='#'><i class='bx bxl-github' ></i></a>
+                <a href='#'><i class='bx bxl-instagram-alt'></i></a>
+                <a href='#'><i class='bx bxl-facebook-circle'></i></a>
+            </div>
+
+            <div class='btn-group'>
+                <a href='#' class='btn'>More</a>
+                <a href='#contact' class='btn'>Contact</a>
+            </div>
+        </div>
+        <div class='home-img'>
+            <img src='duyan.jpg' alt=''>
+        </div>
+    </section>
+	
+	<div th:replace="fragment :: footer"></div>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
