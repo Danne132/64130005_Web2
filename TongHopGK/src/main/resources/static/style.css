@@ -10,7 +10,7 @@
 }
 
 :root{
-    --bg-color: #fdfdfd;
+    --bg-color: #89AFC4;
     --second-bg-color: #131313;
     --text-color: black;
     --main-color: rgb(16, 146, 188);
@@ -31,14 +31,9 @@ a{
 }
 
 .header{
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     padding: 20px 30px 10px;
-    background-color: rgb(253, 253, 253);
     backdrop-filter: blur(10px);
-    z-index: 5;
     border-bottom: 2px solid #777;
 }
 
@@ -52,7 +47,7 @@ a{
 
 .navbar a{
     font-size: 1.8rem;
-    color: var(--text-color);
+    color: white;
     margin-right: 4rem;
     font-weight: 500;
     transition: 0.3s ease;
@@ -80,10 +75,11 @@ a{
 .sidebar{
 	grid-row: span 5 / span 5;
     grid-column-start: 5;
+    padding: 10px;
 }
 
 .sidebar img{
-	height: calc(100vh - 3rem);	
+	height: 400px;	
 }
 
 .footer{
