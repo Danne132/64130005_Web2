@@ -10,13 +10,14 @@
 }
 
 :root{
-    --bg-color: #89AFC4;
+    --bg-color: #f9f9f9;
     --second-bg-color: #131313;
     --text-color: black;
-    --main-color: rgb(16, 146, 188);
+    --main-color: #38627B;
 }
 
 html{
+	height: 100vh;
     font-size: 60%;
     overflow-x: hidden;
 }
@@ -24,6 +25,7 @@ html{
 body{
     background-color: var(--bg-color);
     color: var(--text-color);
+    heigth: calc(100vh-3rem);
 }
 
 a{
@@ -31,9 +33,11 @@ a{
 }
 
 .header{
+	position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     padding: 20px 30px 10px;
-    backdrop-filter: blur(10px);
     border-bottom: 2px solid #777;
 }
 
@@ -47,7 +51,7 @@ a{
 
 .navbar a{
     font-size: 1.8rem;
-    color: white;
+    color: var(--text-color);
     margin-right: 4rem;
     font-weight: 500;
     transition: 0.3s ease;
@@ -65,6 +69,7 @@ a{
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);
     gap: 8px;
+    margin-top: 16rem;
 }
 
 .content{
@@ -73,13 +78,19 @@ a{
 }
 
 .sidebar{
+	height: 550px;
 	grid-row: span 5 / span 5;
     grid-column-start: 5;
     padding: 10px;
+    background: #38627B;
+    position: absolute;
+	right: 0;	
+	margin-top: -10px;
 }
 
 .sidebar img{
-	height: 400px;	
+	height: 500px;
+	border-radius: 20px;
 }
 
 .footer{
