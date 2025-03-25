@@ -32,4 +32,9 @@ public class HomeController {
 		model.addAttribute("svs", sinhViens);
 		return "list";
 	}
+	
+	@GetMapping("/addNew")
+	public String toNew(ModelMap model) {
+		return "newStudent";
+	}
 }
