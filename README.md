@@ -33,7 +33,14 @@
 |:------------------------|:------------|
 |![image](https://github.com/user-attachments/assets/8392b1f6-31b0-483c-abdb-303e3735505d)|![image](https://github.com/user-attachments/assets/fb5f2d04-02a7-4ef2-b6fd-8f5412313c87)|
 
+### 5. Bài tổng hợp
+|Layout|About|
+|:------------------------|:------------|
+|![image](https://github.com/user-attachments/assets/f316ac07-f9ac-4336-8018-348bb84965db)|![image](https://github.com/user-attachments/assets/5af488ea-56ab-494f-9245-4d32e695b8c1)|
 
+|List|
+|:----|
+![image](https://github.com/user-attachments/assets/1d16ade1-00aa-4c1c-bb94-247769adaeba)|
 
 
 
