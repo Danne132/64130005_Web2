@@ -14,7 +14,8 @@
     	
     	
         .sidebar img {
-            width: 90%;
+            width: 100%;
+            height: 520px;
             border-radius: 10px;
         }
        	.wrapper {
@@ -34,18 +35,20 @@
 	    <div th:replace="layout::header"></div>
 	
 	    <!-- Main Layout -->
-	    <div class="main-content container-fluid d-flex justify-content-center gap-3 mb-3">
+	    <div class="main-content container-fluid mb-3">
+	    	<div class="column d-flex justify-content-center gap-3 px-3">
 	        	<!-- Content -->
-	            <main class="bg-light col-md-9 col-sm-9 g-col-9">
-	                <div class="p-3 shadow-sm rounded">
+	            <main class="bg-light col-md-9 col-sm-9 g-col-9 rounded p-3 shadow-sm">
+	                <div>
 	                    <h2>Tiêu đề nội dung</h2>
 	                    <p>Đây là phần nội dung chính của trang web. Bạn có thể thêm nội dung ở đây.</p>
 	                </div>
 	            </main>
 	            <!-- Sidebar -->
-	            <div  class="col-md-3 col-sm-3 g-col-3">
+	            <div  class="col-md-3 col-sm-3 g-col-3 ">
 	            	<div th:replace="layout::sidebar"></div>
 	            </div>
+	         </div>
 	    </div>
 		
 	    <!-- Footer -->
