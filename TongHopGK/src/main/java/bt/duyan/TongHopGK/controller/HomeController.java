@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.duyan.HelloSpringBoot.model.SinhVien;
-
 import bt.duyan.TongHopGK.model.Student;
 import jakarta.servlet.http.HttpServletRequest;
 

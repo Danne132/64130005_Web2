@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<!-- HEADER -->
+	<div th:fragment="header">
+		<header class="header container-fluid text-left py-3 px-0">
+	        <nav class="navbar navbar-expand-lg navbar-light bg-light px-4 mt-4">
+	            <div class="container-fluid px-4">
+	                <a class="navbar-brand fw-bold" href="#">Hoàng Duy An</a>
+	                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+	                    <span class="navbar-toggler-icon"></span>
+	                </button>
+	                <div class="collapse navbar-collapse" id="navbarNav">
+	                    <ul class="navbar-nav ms-auto">
+	                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+	                        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+	                        <li class="nav-item"><a class="nav-link" href="#">List</a></li>
+	                        <li class="nav-item"><a class="nav-link" href="#">Add new</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </nav>
+	    </header>
+	</div>
+	
+	<!-- SIDEBAR -->
+	<div th:fragment="sidebar">
+		<aside>
+        	<div class="sidebar p-3 bg-light rounded">
+                <img src="bg6.jpg" alt="Sidebar Image">
+            </div>
+        </aside>
+	</div>
+	
+	<!-- FOOTER -->
+	<div th:fragment="footer">
+		<footer class="container-fluid bg-dark text-white text-center">
+	        <span>&copy; 2025 My Website. All rights reserved.</span>
+	    </footer>
+	</div>
+</body>
+</html>
