@@ -1,11 +1,25 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto+Slab:wght@100..900&display=swap');
 body{
 	background: url(bg4.jpeg);
     background-size: cover;
+    background-attachment: fixed;
    	width: 100%;
 }
-    	
-    	
+    
+a{
+	text-decoration: none;
+}    
+
+.home-content img{
+	width: 100%;
+}
+
+.img_wrap{
+	display: inline-block;
+	position: relative;
+}
+	
 .sidebar img {
     width: 100%;
     height: 520px;
@@ -21,6 +35,63 @@ body{
 }	
 
 .blur{
-	background: rgba(56, 98, 123, 0.3); /* Màu nền trong suốt */
+	background: rgba(56, 98, 123, 0.3);
  	backdrop-filter: blur(10px);
+}
+
+.shadow_custom{
+	box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.home-content_left h2{
+	font-family: "Dancing Script", cursive;
+	font-weight: 700;
+	font-size: 3.5rem;
+}
+
+.home-content_right ul{
+	font-family: "Roboto Slab", serif;
+	gap: 15px;
+}
+
+
+.home-content_right .contact_icon{
+	text-decoration: none;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 7px;
+	border-radius: 50%;
+	border: 0.5px solid rgba(255, 255, 255, 0.5);
+	color: white;
+	font-size: 2rem;
+}
+
+
+.home-content_right ul li{
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid rgba(255,255,255, 0.5);
+}
+
+.add-content h2{
+	font-family: "Dancing Script", cursive;
+	font-weight: 700;
+	font-size: 3rem;
+	line-height: 0;
+}
+
+.add-content label{
+	font-size: 1.2rem;
+}
+
+.cancel_btn{
+	border: none;
+	background: transparent;
+}
+
+.add_content-right h2{
+	font-family: "Dancing Script", cursive;
+	font-weight: 700;
 }

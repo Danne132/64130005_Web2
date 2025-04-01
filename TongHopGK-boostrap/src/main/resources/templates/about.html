@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About me</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+   	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<div class="wrapper container-fluid p-0 position-absolute">
+		<!-- Header -->
+	    <div th:replace="layout::header"></div>
+	
+	    <!-- Main Layout -->
+	    <div class="main-content container-fluid mb-3">
+	    	<div class="column d-flex justify-content-center gap-3 px-3">
+	        	<!-- Content -->
+	            <main class="col-md-9 col-sm-9 g-col-9 rounded p-5 blur shadow_custom">
+	                <div class="home-content row" style="height: 100%">
+	                	<div class="home-content_left col-md-4 col-sm-4">
+	                		<div class="img_wrap border border-3 rounded-circle border-light border-opacity-75 shadow">
+	                			<img src="avatar.jpg" alt="" class="rounded-circle">
+	                		</div>
+	                		<div class="d-flex justify-content-center mt-2">
+	                			<h2 class="text-light">Hoàng Duy An</h2>
+	                		</div>
+	                	</div>
+	                	<div class="home-content_right col-md-8">
+	                		<ul class="list-group list-group-flush fs-4 fw-bolder fst-italic text-light p-3">
+	                			<li>Gender: <span class="fst-normal fw-normal">Male</span></li>
+	                			<li>DoB: <span class="fst-normal fw-normal">13-10-2004</span></li>
+	                			<li>Living at: <span class="fst-normal fw-normal">Nha Trang, Khánh Hòa</span></li>
+	                			<li>Studying at: <span class="fst-normal fw-normal">Nha Trang University</span></li>
+	                			<li>Major: <span class="fst-normal fw-normal">Information Technology</span></li>
+	                			<li>Class: <span class="fst-normal fw-normal">64.CNTT-CLC</span></li>
+	                		</ul>
+	                		<div class="d-flex justify-content-center align-items-center gap-3 mt-3">
+		                		<a href="https://www.facebook.com/hoangduyan2004" class="contact_icon blur shadow_custom"><i class='bx bxl-facebook'></i></a>
+		                		<a href="" class="contact_icon blur shadow_custom"><i class='bx bxl-linkedin'></i></a>
+		                		<a href="" class="contact_icon blur shadow_custom"><i class='bx bxl-instagram-alt'></i></a>
+		                	</div>
+	                	</div>
+	                	
+	                </div>
+	            </main>
+	            <!-- Sidebar -->
+	            <div  class="col-md-3 col-sm-3 g-col-3">
+	            	<div th:replace="layout::sidebar"></div>
+	            </div>
+	         </div>
+	    </div>
+		
+	    <!-- Footer -->
+	    <div th:replace="layout::footer" class=""></div>
+	</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
