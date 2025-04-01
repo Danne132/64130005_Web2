@@ -8,7 +8,7 @@
 		<version>3.4.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>thiGK.64130005</groupId>
+	<groupId>thiGK.ntu64130005</groupId>
 	<artifactId>HoangDuyAn_ThiGK</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>HoangDuyAn_ThiGK</name>
