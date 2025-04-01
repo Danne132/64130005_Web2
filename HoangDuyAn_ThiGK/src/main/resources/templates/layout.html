@@ -5,14 +5,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div th:fragment="navbar" class="flex-column">
-		<img src="logo.png">
-		<div class="list-group">
-			<a href="#" class="list-group-item list-group-item-action active" aria-current="true">The current link item</a>
-			<a href="#" class="list-group-item list-group-item-action">A second link item</a>
-			<a href="#" class="list-group-item list-group-item-action">A third link item</a>
-			<a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-			<a class="list-group-item list-group-item-action disabled" aria-disabled="true">A disabled link item</a>
+
+	<!-- NavBar -->
+	<div th:fragment="navbar" class="d-flex flex-column blur shadow p-3 col-md-2">
+		<img src="logo.png" class="mb-3">
+		<div class="list-group fs-5">
+			<a href="#" class="list-group-item list-group-item-action text-light" style = "background: transparent" aria-current="true">Dashboard</a>
+			<a href="#" class="list-group-item list-group-item-action text-light" style = "background: transparent">Page-List</a>
+			<a href="#" class="list-group-item list-group-item-action text-light" style = "background: transparent">Page-Addnew</a>
+			<a href="#" class="list-group-item list-group-item-action text-light" style = "background: transparent">Post-List</a>
+			<a href="#" class="list-group-item list-group-item-action text-light" style = "background: transparent">Post-Addnew</a>
 		</div>
 	</div>
 	
