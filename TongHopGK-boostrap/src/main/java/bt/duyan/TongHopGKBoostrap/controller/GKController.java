@@ -92,6 +92,35 @@ public class GKController {
 		return weight / (height * height);
 	}
 	
+	@RequestMapping(value = "/calculator", method = RequestMethod.POST)
+    public String calculate(ModelMap model, 
+            @RequestParam(name = "numberA", defaultValue = "0") float numberA,
+            @RequestParam(name = "numberB", defaultValue = "0") float numberB,
+            @RequestParam(name = "pheptinh", defaultValue = "", required = false) String phepTinh) {
+        
+        float kqua = 0;
+        String bieuthuc = "";
+        
+        switch (phepTinh) {
+            case "cong":
+                kqua = numberA + numberB;
+                bieuthuc = numberA + " + " + numberB;
+                break;
+            case "tru":
+            	kqua = numberA - numberB;
+            	bieuthuc = numberA + " - " + numberB;
+                break;
+            default:
+            	bieuthuc = "Vui lòng chọn phép tính";
+                break;
+        }
+        
+        model.addAttribute("bt", kqua);
+        model.addAttribute("kq", bieuthuc);
+        
+        return "maytinh";
+    }
+	
 	private String evaluate(float bmi, boolean isAsian) {
 		if(isAsian) {
 			if (bmi < 18.5) return "Thiếu cân";
@@ -107,4 +136,5 @@ public class GKController {
             else return "Béo phì";
         }
 	}
+
 }
