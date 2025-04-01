@@ -11,16 +11,18 @@
 		<header class="header container-fluid text-left py-3 px-0">
 	        <nav class="navbar navbar-expand-lg navbar-light bg-light px-4 mt-4">
 	            <div class="container-fluid px-4">
-	                <a class="navbar-brand fw-bold" href="#">Hoàng Duy An</a>
+	                <a class="navbar-brand fw-bold" href="/">Hoàng Duy An</a>
 	                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
 	                    <span class="navbar-toggler-icon"></span>
 	                </button>
 	                <div class="collapse navbar-collapse" id="navbarNav">
 	                    <ul class="navbar-nav ms-auto">
-	                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-	                        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-	                        <li class="nav-item"><a class="nav-link" href="#">List</a></li>
-	                        <li class="nav-item"><a class="nav-link" href="#">Add new</a></li>
+	                        <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+	                        <li class="nav-item"><a class="nav-link" th:href="@{/about}">About</a></li>
+	                        <li class="nav-item"><a class="nav-link" th:href="@{/list}">List</a></li>
+	                        <li class="nav-item"><a class="nav-link" th:href="@{/addNew}">Add new</a></li>
+	                        <li class="nav-item"><a class="nav-link" th:href="@{/bmi}">BMI</a></li>
+	                        <li class="nav-item"><a class="nav-link" th:href="@{/calc}">Calculator</a></li>
 	                    </ul>
 	                </div>
 	            </div>
@@ -31,7 +33,7 @@
 	<!-- SIDEBAR -->
 	<div th:fragment="sidebar">
 		<aside>
-        	<div class="sidebar p-3 rounded blur d-flex justify-content-center">
+        	<div class="sidebar p-3 rounded blur shadow_custom d-flex justify-content-center">
                 <img src="bg6.jpg" alt="Sidebar Image">
             </div>
         </aside>

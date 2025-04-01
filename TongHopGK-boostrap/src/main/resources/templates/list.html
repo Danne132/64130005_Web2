@@ -17,8 +17,30 @@
 	    <div class="main-content container-fluid mb-3">
 	    	<div class="column d-flex justify-content-center gap-3 px-3">
 	        	<!-- Content -->
-	            <main class="col-md-9 col-sm-9 g-col-9 rounded p-5 blur shadow_custom">
-	                
+	            <main class="col-md-9 col-sm-9 g-col-9 rounded px-5 py-4 blur shadow_custom wrapper" style="min-height: auto">
+	            	<div class="main-content">
+	            		<table class="table-hover table-responsive w-100 text-white fs-5">
+						  <thead>
+						    <tr>
+						      <th scope="col" class="py-2">MSSV</th>
+						      <th scope="col">Họ và tên</th>
+						      <th scope="col">Điểm trung bình</t>
+						      <th scope="col">Hành động</t>
+						    </tr>
+						  </thead>
+						  <tbody class="table-group-divider">
+						    <tr th:each="sv : ${svs}"  style="border-bottom:1px solid rgba(255, 255, 255, 0.5)">
+			                    <td th:text="${sv.mssv}" class="py-2"></td>
+			                    <td th:text="${sv.hoTen}"></td>
+			                    <td th:text="${sv.diemTB}"></td>
+			                    <td class="d-flex gap-2 mt-1">|<a>Xem</a>|<a>Sửa</a>|<a>Xóa</a>|</td>
+			                </tr>
+						  </tbody>
+						</table>
+	            	</div>
+	            	<div>
+	            		<a href="/addNew"><button type="button" class="btn bg-light shadow">Thêm mới</button></a>
+	            	</div>
 	            </main>
 	            <!-- Sidebar -->
 	            <div  class="col-md-3 col-sm-3 g-col-3">
