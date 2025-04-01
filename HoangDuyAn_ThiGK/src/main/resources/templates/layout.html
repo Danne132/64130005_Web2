@@ -5,8 +5,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div th:fragment="navbar flex-column">
-		<img src="logo.png>
+	<div th:fragment="navbar" class="flex-column">
+		<img src="logo.png">
 		<div class="list-group">
 			<a href="#" class="list-group-item list-group-item-action active" aria-current="true">The current link item</a>
 			<a href="#" class="list-group-item list-group-item-action">A second link item</a>
@@ -14,6 +14,13 @@
 			<a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
 			<a class="list-group-item list-group-item-action disabled" aria-disabled="true">A disabled link item</a>
 		</div>
+	</div>
+	
+	<!-- FOOTER -->
+	<div th:fragment="footer">
+		<footer class="container-fluid bg-dark text-center">
+	        <span class="text-white">&copy; 2025 by Hoàng Duy An - FIT.NTU.</span>
+	    </footer>
 	</div>
 </body>
 </html>
