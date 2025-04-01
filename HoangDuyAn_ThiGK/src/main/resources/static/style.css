@@ -15,6 +15,12 @@ a{
 	width: 100%;
 }
 
+.font_decor{
+	font-family: "Dancing Script", cursive;
+	font-weight: 700;
+	font-size: 1.5rem;
+}
+
 .img_wrap{
 	display: inline-block;
 	position: relative;

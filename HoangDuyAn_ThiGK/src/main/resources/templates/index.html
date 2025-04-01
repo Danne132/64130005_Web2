@@ -10,7 +10,13 @@
 <body>
 	<div class="wrapper container-fluid p-0 position-absolute">
 		<div class="main-content column d-flex">
-			<div th:replace="layout::navbar" class="col-md-2"></div>
+			<div th:replace="layout::navbar" class=""></div>
+			<div class="col-md-10">
+				<div class="blur shadow p-3 d-flex font_decor text-light justify-content-end">
+					<div th:replace="layout::header"></div>
+				</div>
+				
+			</div>
 		</div>
 		
 		 <!-- Footer -->
