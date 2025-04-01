@@ -39,4 +39,15 @@ public class GKController {
         }
         return "redirect:/dashboard/pagelist";
     }
+	
+	@GetMapping("/page/delete/{id}")
+    public String deletePage(@PathVariable int id) {
+        pages.removeIf(page -> page.id == id);
+        return "redirect:/dashboard/pagelist";
+    }
+	
+	@GetMapping("/page/new")
+	public String getNewPage() {
+        return "addpage";
+	}
 }
