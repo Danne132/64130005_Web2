@@ -36,11 +36,11 @@
 ### 5. Bài tổng hợp
 |Layout|About|
 |:------------------------|:------------|
-|![image](https://github.com/user-attachments/assets/f316ac07-f9ac-4336-8018-348bb84965db)|![image](https://github.com/user-attachments/assets/5af488ea-56ab-494f-9245-4d32e695b8c1)|
+|![image](https://github.com/user-attachments/assets/25187eb0-a389-4657-9c92-d6dce2f86f18)|![image](https://github.com/user-attachments/assets/77dbc62e-7c14-431e-9810-a1d3157703bc)|
 
 |List|Add new|
 |:----|:------|
-![image](https://github.com/user-attachments/assets/1d16ade1-00aa-4c1c-bb94-247769adaeba)|![image](https://github.com/user-attachments/assets/3c43d411-edc1-44f9-a2aa-938cfee3cf8b)|
+|![image](https://github.com/user-attachments/assets/566443b6-c8f9-485c-96c0-d01b64097026)|![image](https://github.com/user-attachments/assets/f2c295eb-c609-46d4-b9ed-2620a494ec7f)|
 
 
 
