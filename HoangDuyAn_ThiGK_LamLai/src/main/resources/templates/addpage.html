@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>New page</title>
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/style.css}" rel="stylesheet">
+</head>
+<body>
+	<div class="wrapper container-fluid p-0 position-absolute">
+		<div class="main-content column d-flex">
+			<div th:replace="layout::navbar"class=""></div>
+			<div class="col-md-10">
+				<div class="blur shadow p-3 d-flex font_decor text-light justify-content-end">
+					<div th:replace="layout::header"></div>
+				</div>
+				<div class="rounded p-5 blur shadow_custom mt-5 mx-3 d-flex justify-content-center">
+					<form class="add-content row g-1 w-50 h-75 d-flex column justify-content-center" th:action="@{/add}" method="post">
+	                	<h2 class="text-center text-light mb-4">Thêm trang</h2>
+	                	<div class="mb-2">
+							<label class="form-label text-light mb-0 fw-bold">Id</label>
+							<input type="text" class="form-control" id="mssv" name="id" placeholder="">
+						</div>
+						<div class="mb-2">
+							<label class="form-label text-light mb-0 fw-bold">Page name</label>
+							<input type="text" class="form-control" id="hoTen" name="namePage" placeholder="">
+						</div>
+						<div class="mb-2">
+							<label class="form-label text-light mb-0 fw-bold">KeyWord</label>
+							<input type="text" class="form-control" id="hoTen" name="keyword" placeholder="">
+						</div>
+						<div class="mb-2">
+							<label class="form-label text-light mb-0 fw-bold">Content</label>
+							<input type="text-area" class="form-control" id="diemTB" name="content" placeholder="">
+						</div>
+						<div class="mb-2">
+							<label class="form-label text-light mb-0 fw-bold">Parent Page id</label>
+							<input type="text" class="form-control" id="diemTB" name="parentPageId" placeholder="">
+						</div>
+						<div class="d-flex justify-content-center gap-3">
+							<button type="submit" class="btn bg-light shadow w-25 p-0">Add</button>
+							<a href="/list" class="text-dark btn bg-light shadow w-25 p-0 d-flex align-items-center justify-content-center"><button type="button" class="cancel_btn">Cancel</button></a>
+						</div>
+						
+	                </form>
+				</div>
+			</div>
+		</div>
+		
+		 <!-- Footer -->
+	    <div th:replace="layout::footer" class=""></div>
+	</div>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
