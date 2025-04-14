@@ -1,0 +1,5 @@
+package thiGK.ntu64130005.HoangDuyAn_ThiGK.model;
+
+public class Page {
+
+}
