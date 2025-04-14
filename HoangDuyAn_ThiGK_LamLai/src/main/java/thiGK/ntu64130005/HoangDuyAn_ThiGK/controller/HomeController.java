@@ -6,7 +6,11 @@ import java.util.Arrays;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import jakarta.servlet.http.HttpServletRequest;
 import thiGK.ntu64130005.HoangDuyAn_ThiGK.model.Page;
 import thiGK.ntu64130005.HoangDuyAn_ThiGK.model.Post;
 
@@ -36,4 +40,41 @@ public class HomeController {
 	public String getNewPage() {
         return "addpage";
 	}
+	
+	@RequestMapping(value = "/addpage", method = RequestMethod.POST)
+	public String addPage(ModelMap model, HttpServletRequest request) {
+		int id = Integer.parseInt(request.getParameter("id"));
+		String pageName = request.getParameter("namePage");
+		String keyword = request.getParameter("keyword");
+		String content = request.getParameter("content");
+		int parentPageId = Integer.parseInt(request.getParameter("parentPageId"));
+		Page page = new Page(id, pageName, keyword, content, parentPageId);
+		pages.add(page);
+		model.addAttribute("pages", pages);
+		return "pagelists";
+	}
+	
+	@GetMapping("/post/all")
+	public String getAllPost(ModelMap model) {
+		model.addAttribute("posts", posts);
+        return "postlists";
+	}
+	
+	@GetMapping("/post/new")
+	public String getNewPost() {
+        return "addPost";
+	}
+	
+	@RequestMapping(value = "/addpost", method = RequestMethod.POST)
+	public String addPost(ModelMap model, HttpServletRequest request) {
+		String id = request.getParameter("id");
+		String pageName = request.getParameter("title");
+		String keyword = request.getParameter("content");
+		String content = request.getParameter("categoryId");
+		Post page = new Post(id, pageName, keyword, content);
+		posts.add(page);
+		model.addAttribute("posts", posts);
+		return "postlists";
+	}
+	
 }

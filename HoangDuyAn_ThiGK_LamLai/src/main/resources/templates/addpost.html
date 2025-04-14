@@ -16,31 +16,27 @@
 					<div th:replace="layout::header"></div>
 				</div>
 				<div class="rounded p-5 blur shadow_custom mt-5 mx-3 d-flex justify-content-center">
-					<form class="add-content row g-1 w-50 h-75 d-flex column justify-content-center" th:action="@{/addpage}" method="post">
-	                	<h2 class="text-center text-light mb-4">Thêm trang</h2>
+					<form class="add-content row g-1 w-50 h-75 d-flex column justify-content-center" th:action="@{/addpost}" method="post">
+	                	<h2 class="text-center text-light mb-4">Thêm Post</h2>
 	                	<div class="mb-2">
 							<label class="form-label text-light mb-0 fw-bold">Id</label>
-							<input type="text" class="form-control" id="mssv" name="id" placeholder="">
+							<input type="text" class="form-control" id="id" name="id" placeholder="">
 						</div>
 						<div class="mb-2">
-							<label class="form-label text-light mb-0 fw-bold">Page name</label>
-							<input type="text" class="form-control" id="hoTen" name="namePage" placeholder="">
-						</div>
-						<div class="mb-2">
-							<label class="form-label text-light mb-0 fw-bold">KeyWord</label>
-							<input type="text" class="form-control" id="hoTen" name="keyword" placeholder="">
+							<label class="form-label text-light mb-0 fw-bold">Post Title</label>
+							<input type="text" class="form-control" id="namePage" name="namePage" placeholder="">
 						</div>
 						<div class="mb-2">
 							<label class="form-label text-light mb-0 fw-bold">Content</label>
-							<input type="text-area" class="form-control" id="diemTB" name="content" placeholder="">
+							<input type="text-area" class="form-control" id="content" name="content" placeholder="">
 						</div>
 						<div class="mb-2">
-							<label class="form-label text-light mb-0 fw-bold">Parent Page id</label>
-							<input type="text" class="form-control" id="diemTB" name="parentPageId" placeholder="">
+							<label class="form-label text-light mb-0 fw-bold">Category Id</label>
+							<input type="text" class="form-control" id="categoryId" name="categoryId" placeholder="">
 						</div>
 						<div class="d-flex justify-content-center gap-3">
 							<button type="submit" class="btn bg-light shadow w-25 p-0">Add</button>
-							<a href="/list" class="text-dark btn bg-light shadow w-25 p-0 d-flex align-items-center justify-content-center"><button type="button" class="cancel_btn">Cancel</button></a>
+							<a href="/postlists" class="text-dark btn bg-light shadow w-25 p-0 d-flex align-items-center justify-content-center"><button type="button" class="cancel_btn">Cancel</button></a>
 						</div>
 						
 	                </form>

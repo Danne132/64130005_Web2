@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Page List</title>
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/style.css" rel="stylesheet">
+</head>
+<body>
+	<div class="wrapper container-fluid p-0 position-absolute">
+		<div class="main-content column d-flex">
+			<div th:replace="layout::navbar"class=""></div>
+			<div class="col-md-10">
+				<div class="blur shadow p-3 d-flex font_decor text-light justify-content-end">
+					<div th:replace="layout::header"></div>
+				</div>
+				<div class="rounded p-5 blur shadow_custom mt-5 mx-3">
+					<div class="main-content">
+	            		<table class="table-hover table-responsive w-100 text-white fs-5">
+						  <thead>
+						    <tr>
+						      <th scope="col" class="py-2">Id</th>
+						      <th scope="col">Post category</th>
+						      <th scope="col">Action</t>
+						    </tr>
+						  </thead>
+						  <tbody class="table-group-divider">
+						    <tr th:each="posts : ${posts}"  style="border-bottom:1px solid rgba(255, 255, 255, 0.5)">
+			                    <td th:text="${posts.id}" class="py-2"></td>
+			                    <td th:text="${posts.categoryId}"></td>
+			                    <td class="d-flex gap-2 mt-1">|<a th:href="@{'/post/' + ${posts.id}}">Xem</a>|<a>Sửa</a>|<a th:href="@{'/dashboard/posts/delete/' + ${posts.id}}">Xóa</a>|</td>
+			                </tr>
+						  </tbody>
+						</table>
+	            	</div>
+	            	<div>
+	            		<a href="/addNew"><button type="button" class="btn bg-light shadow mt-3">Thêm mới</button></a>
+	            	</div>
+				</div>
+			</div>
+		</div>
+		
+		 <!-- Footer -->
+	    <div th:replace="layout::footer" class=""></div>
+	</div>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
