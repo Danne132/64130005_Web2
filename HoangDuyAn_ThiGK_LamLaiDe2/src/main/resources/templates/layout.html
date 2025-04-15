@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+</head>
+<body>
+
+	<div th:fragment="header">
+		<p class="m-0">Hoàng Duy An</p>
+	</div>
+
+	<!-- NavBar -->
+	<div th:fragment="navbar" class="d-flex flex-column blur shadow p-3 col-md-2">
+		<img th:src="@{/logo.png}" 	 class="mb-3 bg-light p-1 rounded-1">
+		<div class="list-group fs-5 fw-bold list-group-flush">
+			<a href="/" class="list-group-item list-group-item-action text-light" style = "background: transparent" aria-current="true">Dashboard</a>
+			<a href="/topic/all" class="list-group-item list-group-item-action text-light" style = "background: transparent">Topic-List</a>
+			<a href="/topic/new" class="list-group-item list-group-item-action text-light" style = "background: transparent">Topic-Addnew</a>
+			<div class="list-group-item list-group-item-action text-light p-4" style = "background: transparent"> </div>
+			<a href="/student/all" class="list-group-item list-group-item-action text-light" style = "background: transparent">Student-List</a>
+			<a href="/student/new" class="list-group-item list-group-item-action text-light" style = "background: transparent">Student-Addnew</a>
+		</div>
+	</div>
+	
+	<!-- FOOTER -->
+	<div th:fragment="footer">
+		<footer class="container-fluid bg-dark text-center">
+	        <span class="text-white">&copy; 2025 by Hoàng Duy An - FIT.NTU.</span>
+	    </footer>
+	</div>
+</body>
+</html>
