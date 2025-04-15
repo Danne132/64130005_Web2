@@ -34,12 +34,12 @@ public class HomeController {
 	@GetMapping("/page/all")
 	public String getAllPage(ModelMap model) {
 		model.addAttribute("pages", pages);
-        return "pagelists";
+        return "pages/pagelists";
 	}
 	
 	@GetMapping("/page/new")
 	public String getNewPage() {
-        return "addpage";
+        return "pages/addpage";
 	}
 	
 	@RequestMapping(value = "/addpage", method = RequestMethod.POST)
@@ -52,7 +52,7 @@ public class HomeController {
 		Page page = new Page(id, pageName, keyword, content, parentPageId);
 		pages.add(page);
 		model.addAttribute("pages", pages);
-		return "pagelists";
+		return "pages/pagelists";
 	}
 	
 	@GetMapping("/page/view/{id}")
@@ -63,7 +63,7 @@ public class HomeController {
 	            break;
 	        }
 	    }
-	    return "viewPage";
+	    return "pages/viewPage";
 	}
 	
     @GetMapping("/page/delete/{id}")
@@ -75,12 +75,12 @@ public class HomeController {
 	@GetMapping("/post/all")
 	public String getAllPost(ModelMap model) {
 		model.addAttribute("posts", posts);
-        return "postlists";
+        return "posts/postlists";
 	}
 	
 	@GetMapping("/post/new")
 	public String getNewPost() {
-        return "addPost";
+        return "posts/addPost";
 	}
 	
 	@RequestMapping(value = "/addpost", method = RequestMethod.POST)
@@ -92,7 +92,7 @@ public class HomeController {
 		Post page = new Post(id, pageName, keyword, content);
 		posts.add(page);
 		model.addAttribute("posts", posts);
-		return "postlists";
+		return "posts/postlists";
 	}
 	
 	@GetMapping("/post/view/{id}")
@@ -103,7 +103,7 @@ public class HomeController {
 	            break;
 	        }
 	    }
-	    return "viewPost";
+	    return "posts/viewPost";
 	}
 	
     @GetMapping("/post/delete/{id}")
