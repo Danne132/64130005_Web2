@@ -31,7 +31,7 @@
 			                    <td th:text="${pages.id}" class="py-2"></td>
 			                    <td th:text="${pages.pageName}"></td>
 			                    <td th:text="${pages.parentPageId}"></td>
-			                    <td class="d-flex gap-2 mt-1">|<a th:href="@{'/page/' + ${pages.id}}">Xem</a>|<a>Sửa</a>|<a th:href="@{'/dashboard/page/delete/' + ${pages.id}}">Xóa</a>|</td>
+			                    <td class="d-flex gap-2 mt-1">|<a th:href="@{/page/view/{id}(id=*{id})}">Xem</a>|<a>Sửa</a>|<a th:href="@{/page/delete/{id}(id=*{id})}">Xóa</a>|</td>
 			                </tr>
 						  </tbody>
 						</table>

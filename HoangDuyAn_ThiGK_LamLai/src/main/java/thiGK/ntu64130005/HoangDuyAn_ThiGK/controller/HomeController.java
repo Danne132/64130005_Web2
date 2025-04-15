@@ -6,6 +6,7 @@ import java.util.Arrays;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -53,6 +54,23 @@ public class HomeController {
 		model.addAttribute("pages", pages);
 		return "pagelists";
 	}
+	
+	@GetMapping("/page/view/{id}")
+	public String viewPage(@PathVariable("id") int id, ModelMap model) {
+	    for (Page page : pages) {
+	        if (page.id == id) {
+	            model.addAttribute("page", page);
+	            break;
+	        }
+	    }
+	    return "viewPage";
+	}
+	
+    @GetMapping("/page/delete/{id}")
+    public String deletePage(@PathVariable("id") int id) {
+        pages.removeIf(page -> page.id == id);
+        return "redirect:/page/all";
+    }
 	
 	@GetMapping("/post/all")
 	public String getAllPost(ModelMap model) {
