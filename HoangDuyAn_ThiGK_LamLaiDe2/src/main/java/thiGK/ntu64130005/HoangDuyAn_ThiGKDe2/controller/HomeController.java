@@ -1,11 +1,16 @@
 package thiGK.ntu64130005.HoangDuyAn_ThiGKDe2.controller;
 
+import java.net.http.HttpRequest;
 import java.util.ArrayList;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import jakarta.servlet.http.HttpServletRequest;
 import thiGK.ntu64130005.HoangDuyAn_ThiGKDe2.model.Student;
 import thiGK.ntu64130005.HoangDuyAn_ThiGKDe2.model.Topic;
 
@@ -42,4 +47,23 @@ public class HomeController {
 	public String getNewTopic() {
 		return "topicadd";
 	}
+	
+	@RequestMapping(value="/addtopic", method = RequestMethod.POST)
+	public String addNewTopic(ModelMap model, HttpServletRequest request) {
+		String id = request.getParameter("id");
+		String topicName = request.getParameter("topicName");
+		String topicdescription = request.getParameter("topicDescription");
+		String supervisorId = request.getParameter("supervisor");
+		String type = request.getParameter("type");
+		Topic topic = new Topic(id, topicName, topicdescription, supervisorId, type);
+		topics.add(topic);
+		model.addAttribute("topics", topics);
+		return "topiclists";
+	}
+	
+	@GetMapping("/topic/delete/{id}")
+	public String deleteTopic(@PathVariable("id") String id,ModelMap model) {
+		
+	}
+	
 }
