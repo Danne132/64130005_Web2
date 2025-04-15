@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="${page.id}"></title>
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/style.css" rel="stylesheet">
+</head>
+<body>
+	<div class="wrapper container-fluid p-0 position-absolute">
+		<div class="main-content column d-flex">
+			<div th:replace="layout::navbar"class=""></div>
+			<div class="col-md-10">
+			
+				<div class="blur shadow p-3 d-flex font_decor text-light justify-content-between">
+					<h2 th:text="${topic.topicName}"></h2>
+					<div th:replace="layout::header"></div>
+				</div>
+				<div class="rounded p-5 blur shadow_custom mt-5 mx-3 text-light">
+					<div class="row" style="height: 100%">
+						<p class="p-0 fw-bold fst-italic">Keyword: <span th:text="${page.keyword}"></span></p>
+						<div th:text="${topic.}" class="p-0"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		 <!-- Footer -->
+	    <div th:replace="layout::footer" class=""></div>
+	</div>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

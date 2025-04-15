@@ -63,7 +63,15 @@ public class HomeController {
 	
 	@GetMapping("/topic/delete/{id}")
 	public String deleteTopic(@PathVariable("id") String id,ModelMap model) {
-		
+		for (Topic topic : topics) {
+			if(topic.getId().equals(id)) {
+				topics.remove(topic);
+				break;
+			}
+		}
+		return "redirect:/topic/all";
 	}
+	
+	
 	
 }
