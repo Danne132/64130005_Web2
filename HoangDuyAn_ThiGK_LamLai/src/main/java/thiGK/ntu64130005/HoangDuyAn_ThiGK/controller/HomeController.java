@@ -58,7 +58,7 @@ public class HomeController {
 	@GetMapping("/page/view/{id}")
 	public String viewPage(@PathVariable("id") int id, ModelMap model) {
 	    for (Page page : pages) {
-	        if (page.id == id) {
+	        if (page.getId() == id) {
 	            model.addAttribute("page", page);
 	            break;
 	        }
@@ -68,7 +68,7 @@ public class HomeController {
 	
     @GetMapping("/page/delete/{id}")
     public String deletePage(@PathVariable("id") int id) {
-        pages.removeIf(page -> page.id == id);
+        pages.removeIf(page -> page.getId() == id);
         return "redirect:/page/all";
     }
 	
@@ -98,7 +98,7 @@ public class HomeController {
 	@GetMapping("/post/view/{id}")
 	public String viewPost(@PathVariable("id") String id, ModelMap model) {
 	    for (Post post : posts) {
-	        if (post.id.equals(id)) {
+	        if (post.getId().equals(id)) {
 	            model.addAttribute("post", post);
 	            break;
 	        }
@@ -108,7 +108,7 @@ public class HomeController {
 	
     @GetMapping("/post/delete/{id}")
     public String deletePost(@PathVariable("id") String id) {
-        posts.removeIf(post -> post.id.equals(id));
+        posts.removeIf(post -> post.getId().equals(id));
         return "redirect:/post/all";
     }
 }
