@@ -95,4 +95,20 @@ public class HomeController {
 		return "postlists";
 	}
 	
+	@GetMapping("/post/view/{id}")
+	public String viewPost(@PathVariable("id") String id, ModelMap model) {
+	    for (Post post : posts) {
+	        if (post.id.equals(id)) {
+	            model.addAttribute("post", post);
+	            break;
+	        }
+	    }
+	    return "viewPost";
+	}
+	
+    @GetMapping("/post/delete/{id}")
+    public String deletePost(@PathVariable("id") String id) {
+        posts.removeIf(post -> post.id.equals(id));
+        return "redirect:/post/all";
+    }
 }

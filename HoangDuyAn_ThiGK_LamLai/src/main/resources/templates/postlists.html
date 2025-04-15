@@ -29,7 +29,7 @@
 						    <tr th:each="posts : ${posts}"  style="border-bottom:1px solid rgba(255, 255, 255, 0.5)">
 			                    <td th:text="${posts.id}" class="py-2"></td>
 			                    <td th:text="${posts.categoryId}"></td>
-			                    <td class="d-flex gap-2 mt-1">|<a th:href="@{'/post/' + ${posts.id}}">Xem</a>|<a>Sửa</a>|<a th:href="@{'/dashboard/posts/delete/' + ${posts.id}}">Xóa</a>|</td>
+			                    <td class="d-flex gap-2 mt-1">|<a th:href="@{/post/view/{id}(id=*{posts.id})}">Xem</a>|<a>Sửa</a>|<a th:href="@{/post/delete/{id}(id=*{posts.id})}">Xóa</a>|</td>
 			                </tr>
 						  </tbody>
 						</table>
