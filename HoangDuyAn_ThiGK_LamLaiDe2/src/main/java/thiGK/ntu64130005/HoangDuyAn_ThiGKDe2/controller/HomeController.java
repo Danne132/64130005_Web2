@@ -115,4 +115,15 @@ public class HomeController {
 		}
 		return "redirect:/student/all";
 	}
+	
+	@GetMapping("/students/view/{id}")
+	public String viewStudent(@PathVariable("id") String id, ModelMap model) {
+	    for (Student student : students) {
+	        if (student.getId().equals(id)) {
+	            model.addAttribute("student", student);
+	            break;
+	        }
+	    }
+	    return "studentview";
+	}
 }
