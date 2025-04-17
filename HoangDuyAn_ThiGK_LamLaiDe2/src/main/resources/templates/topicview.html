@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title th:text="${page.id}"></title>
+	<title th:text="${topic.id}"></title>
 	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/style.css" rel="stylesheet">
@@ -19,8 +19,9 @@
 				</div>
 				<div class="rounded p-5 blur shadow_custom mt-5 mx-3 text-light">
 					<div class="row" style="height: 100%">
-						<p class="p-0 fw-bold fst-italic">Keyword: <span th:text="${page.keyword}"></span></p>
-						<div th:text="${topic.}" class="p-0"></div>
+						<p class="p-0 fw-bold fst-italic">Type: <span th:text="${topic.topicType}"></span></p>
+						<p class="p-0 fw-bold fst-italic">Supervisor: <span th:text="${topic.supervisorId}"></span></p>
+						<div th:text="${topic.topicDescription}" class="p-0"></div>
 					</div>
 				</div>
 			</div>

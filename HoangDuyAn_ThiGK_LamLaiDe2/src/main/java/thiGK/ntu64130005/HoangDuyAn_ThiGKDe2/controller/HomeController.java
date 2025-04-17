@@ -72,6 +72,17 @@ public class HomeController {
 		return "redirect:/topic/all";
 	}
 	
+	@GetMapping("/topic/view/{id}")
+	public String viewPage(@PathVariable("id") String id, ModelMap model) {
+	    for (Topic topic : topics) {
+	        if (topic.getId().equals(id)) {
+	            model.addAttribute("topic", topic);
+	            break;
+	        }
+	    }
+	    return "topicview";
+	}
+	
 	@GetMapping("/student/all")
 	public String getAllStudent(ModelMap model) {
 		model.addAttribute("students", students);

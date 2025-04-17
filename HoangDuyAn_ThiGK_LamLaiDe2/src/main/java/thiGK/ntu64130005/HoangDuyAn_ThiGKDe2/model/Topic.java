@@ -4,7 +4,6 @@ public class Topic {
 	private String id, topicName, topicDescription, supervisorId, topicType;
 
 	public Topic(String id, String topicName, String topicDescription, String supervisorId, String topicType) {
-		super();
 		this.id = id;
 		this.topicName = topicName;
 		this.topicDescription = topicDescription;
