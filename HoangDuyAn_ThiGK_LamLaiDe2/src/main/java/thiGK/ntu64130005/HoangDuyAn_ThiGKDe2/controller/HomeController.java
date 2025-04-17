@@ -72,6 +72,36 @@ public class HomeController {
 		return "redirect:/topic/all";
 	}
 	
+	@GetMapping("/student/all")
+	public String getAllStudent(ModelMap model) {
+		model.addAttribute("students", students);
+		return "studentlists";
+	}
 	
+	@GetMapping("/student/new")
+	public String getNewStudent() {
+		return "studentadd";
+	}
 	
+	@RequestMapping(value="/addstudent", method = RequestMethod.POST)
+	public String addNewStudent(ModelMap model, HttpServletRequest request) {
+		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		String groupId = request.getParameter("group");
+		Student student = new Student(id, name, groupId);
+		students.add(student);
+		model.addAttribute("students", students);
+		return "studentlists";
+	}
+	
+	@GetMapping("/student/delete/{id}")
+	public String deleteStudent(@PathVariable("id") String id,ModelMap model) {
+		for (Student student : students) {
+			if(student.getId().equals(id)) {
+				students.remove(student);
+				break;
+			}
+		}
+		return "redirect:/student/all";
+	}
 }
