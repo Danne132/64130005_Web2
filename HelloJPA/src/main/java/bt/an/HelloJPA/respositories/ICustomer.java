@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 import bt.an.HelloJPA.models.Customer;
 
 @Repository
-public interface ICustomer extends JpaRepository<Customer, Integer>{
-	
+public interface ICustomer extends JpaRepository<Customer, String>{
 }

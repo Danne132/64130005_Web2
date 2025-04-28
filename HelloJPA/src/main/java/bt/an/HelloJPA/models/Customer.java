@@ -6,9 +6,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="customer")
+@Table(name="loaisp")
 public class Customer {
 	@Id
-	@Column(name = "id")
-	public int id;
+	@Column(name = "maloai")
+	public String maSP;
+	
+	@Column(name = "tenloai")
+	public String tenSP;
 }

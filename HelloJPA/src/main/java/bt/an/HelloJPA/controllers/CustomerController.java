@@ -22,6 +22,6 @@ public class CustomerController {
 		ArrayList<Customer> ds = new ArrayList<Customer>();
 		ds.addAll(myCustomer.findAll());
 		model.addAttribute("ds", ds);
-		return null;
+		return "index";
 	}
 }
