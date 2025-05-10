@@ -10,8 +10,10 @@ import jakarta.persistence.Table;
 public class Customer {
 	@Id
 	@Column(name = "maloai")
-	public String maSP;
+	private String maSP;
 	
 	@Column(name = "tenloai")
-	public String tenSP;
+	private String tenSP;
+	
+	
 }
