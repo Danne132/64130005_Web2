@@ -38,6 +38,38 @@ public class BookAuthor {
 
 	public BookAuthor() {
 	}
+
+	public Integer getIdBookAuthor() {
+		return idBookAuthor;
+	}
+
+	public void setIdBookAuthor(Integer idBookAuthor) {
+		this.idBookAuthor = idBookAuthor;
+	}
+
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
+	public Author getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Author author) {
+		this.author = author;
+	}
+
+	public boolean isMainAuthor() {
+		return isMainAuthor;
+	}
+
+	public void setMainAuthor(boolean isMainAuthor) {
+		this.isMainAuthor = isMainAuthor;
+	}
 	
 	
 }

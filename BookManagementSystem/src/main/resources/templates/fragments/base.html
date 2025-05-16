@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title} ?: 'Trang quản trị'">Trang quản trị</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/assets/admin/css/main.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Để override thêm nếu cần -->
+    <th:block th:replace="~{::head-extra}"></th:block>
+</head>
+<body class="app sidebar-mini rtl">
+
+<!-- Header -->
+<div th:replace="fragments/header :: header"></div>
+
+<!-- Sidebar -->
+<div th:replace="fragments/sidebar :: sidebar"></div>
+
+<!-- Nội dung chính -->
+<main class="app-content">
+    <th:block th:replace="~{::content}"></th:block>
+</main>
+
+<!-- Scripts -->
+<div th:replace="fragments/scripts :: scripts"></div>
+<th:block th:replace="~{::scripts-extra}"></th:block>
+
+</body>
+</html>
