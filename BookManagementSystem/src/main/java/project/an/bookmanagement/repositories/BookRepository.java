@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import project.an.bookmanagement.models.Book;
 
 public interface BookRepository extends JpaRepository<Book, Integer>{
-	@Query("SELECT SUM(s.quantity) FROM book s")
-    Integer sumSoLuongTonKho();
+	@Query("SELECT COUNT(b) FROM Book b WHERE b.quantity < 50")
+	long countBooksWithLowQuantity();
+	
 }

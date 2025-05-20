@@ -28,7 +28,7 @@
     <div class="col-md-12 col-lg-12">
         <div class="row">
             <!-- col-6 -->
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="widget-small info coloured-icon">
                     <i class='icon bx bxs-data fa-3x'></i>
                     <div class="info">
@@ -39,43 +39,61 @@
                 </div>
             </div>
             <!-- col-6 -->
-            <div class="col-md-6">
-                <div class="widget-small danger coloured-icon">
-                    <i class='icon bx bxs-error-alt fa-3x'></i>
+            <div class="col-md-4">
+                <div class="widget-small warning coloured-icon">
+                    <i class='icon bx bxs-user fa-3x'></i>
                     <div class="info">
                         <h4>Sắp hết hàng</h4>
-                        <!-- <p><b th:text="${dsSach.stream().filter(s -> s.soLuong < 50 and s.soLuong > 0).count()} + ' sản phẩm'"></b></p> -->
-                        <p><b>40</b></p>
+                        <p><b th:text="${authorCount} + ' sản phẩm'"></b></p>
                         <p class="info-tong">Số sản phẩm cảnh báo có số lượng dưới 50.</p>
                     </div>
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="widget-small danger coloured-icon">
+                    <i class='icon bx bxs-error-alt fa-3x'></i>
+                    <div class="info">
+                        <h4>Hết hàng</h4>
+                        <!-- <p><b th:text="${dsSach.stream().filter(s -> s.soLuong < 50 and s.soLuong > 0).count()} + ' sản phẩm'"></b></p> -->
+                        <p><b>40</b></p>
+                        <p class="info-tong">Số sản phẩm cảnh báo có số lượng bằng 0</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <!--END left-->
 
-    <!--Right-->
-    <div class="col-md-12 col-lg-12">
-        <div class="row">
-            <div class="col-md-6">
+    <div class="col-md-12">
                 <div class="tile">
-                    <h3 class="tile-title">Thống kê số lượng sách bán được trong 12 tháng</h3>
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
+                    <h3 class="tile-title">Sách mới thêm vào</h3>
+                    <div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th width="100">Mã sách</th>
+                                    <th>Tên sách</th>
+                                    <th>Giá</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="item : ${dsDonHang}" th:if="${item.maTrangThai == 'Chưa giao hàng' or item.maTrangThai == 'Đang giao hàng'}">
+                                    <td th:text="${item.maDH}"></td>
+                                    <td th:text="${item.khachHang != null ? item.khachHang.fullName() : 'null'}"></td>
+                                    <td th:text="${#numbers.formatDecimal(item.tongTien, 0, 'COMMA', 0, 'POINT')} + ' ₫'"></td>
+                                    <td>
+                                        <span class="badge" 
+                                              th:classappend="${item.trangThaiDH.trangThai == 'Chưa giao hàng'} ? ' bg-info' : 
+                                                             (${item.trangThaiDH.trangThai == 'Đang giao hàng'} ? ' bg-warning' : '')"
+                                              th:text="${item.trangThaiDH.trangThai}">
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="tile">
-                    <h3 class="tile-title">Thống kê số tiền bán được trong 12 tháng</h3>
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <canvas class="embed-responsive-item" id="barChartDemo"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--END right-->
 </div>
 
 <script th:src="@{/Scripts/chart.min.js}"></script>

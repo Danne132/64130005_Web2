@@ -10,7 +10,11 @@ public class BookService {
 	@Autowired
 	private BookRepository bookRepository;
 	
-	public int countBookInStore() {
-		return bookRepository.sumSoLuongTonKho();
+	public long countBookInStore() {
+		return bookRepository.count();
+	}
+	
+	public int CountBookFewer() {
+		List	
 	}
 }
