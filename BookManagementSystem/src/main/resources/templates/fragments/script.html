@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="scripts">
+    <script th:src="@{/assets/admin/js/tinymce/tinymce.min.js}"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea.form-control',
+            plugins: 'bold italic underline | link',
+            toolbar: 'bold italic underline | link'
+        });
+    </script>
+    <script th:src="@{/assets/admin/js/jquery-3.2.1.min.js}"></script>
+    <script th:src="@{/assets/admin/js/popper.min.js}"></script>
+    <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
+    <script th:src="@{/assets/admin/js/bootstrap.min.js}"></script>
+    <script th:src="@{/assets/admin/js/main.js}"></script>
+    <script th:src="@{/assets/admin/js/plugins/pace.min.js}"></script>
+    <script th:src="@{/assets/admin/js/plugins/chart.js}"></script>
+</div>
+</body>
+</html>

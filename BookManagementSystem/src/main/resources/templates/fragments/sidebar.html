@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<aside th:fragment="sidebar" class="app-sidebar" style="background-color: #044785">
+    <div class="app-sidebar__user">
+        <img class="app-sidebar__user-avatar" src="" width="50px">
+        <div>
+            <p class="app-sidebar__user-name"><b>Tên NV</b></p>
+            <p class="app-sidebar__user-designation">Chức vụ</p>
+        </div>
+    </div>
+    <hr>
+    <ul class="app-menu">
+        <li><a class="app-menu__item" th:href="@{/admin/home}"><i class='app-menu__icon bx bx-tachometer'></i><span class="app-menu__label">Bảng điều khiển</span></a></li>
+        <li><a class="app-menu__item" th:href="@{/admin/sach}"><i class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a></li>
+        <li><a class="app-menu__item" th:href="@{/admin/tacgia}"><i class='app-menu__icon bx bx-task'></i><span class="app-menu__label">Quản lý tác giả</span></a></li>
+    </ul>
+</aside>
+</body>
+</html>

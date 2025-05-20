@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:fragment="header" class="app-header" style="background-color: #044785">
+    <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+    <ul class="app-nav">
+        <li>
+            <a class="app-nav__item" th:href="@{/admin/home/logout}">
+                <i class='bx bx-log-out bx-rotate-180'></i>
+            </a>
+        </li>
+    </ul>
+</header>
+</body>
+</html>

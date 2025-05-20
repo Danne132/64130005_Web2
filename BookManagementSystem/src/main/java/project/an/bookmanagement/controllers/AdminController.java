@@ -1,15 +1,24 @@
 package project.an.bookmanagement.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import project.an.bookmanagement.services.BookService;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 	
+	@Autowired
+	private BookService bookService;
+	
 	@GetMapping("/")
-	public String getDashBoard() {
+	public String getDashBoard(ModelMap model) {
+		int count = bookService.countBookInStore();
+		model.addAttribute("bookCount", count);
 		return "dashboard";
 	}
 }

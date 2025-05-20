@@ -31,10 +31,10 @@ public class Book {
 	private String bookName;
 	
 	@Column(name = "price")
-	private int price;
+	private Integer price;
 	
 	@Column(name = "quantity")
-	private int quantity;
+	private Integer quantity;
 	
 	@Column(name = "last_modify")
 	private Date lastModify;
@@ -42,7 +42,7 @@ public class Book {
 	@Column(name = "description")
 	private String description;
 
-	public Book(Integer idBook, Catergory catergory, String bookImage, String bookName, int price, int quantity,
+	public Book(Integer idBook, Catergory catergory, String bookImage, String bookName, Integer price, Integer quantity,
 			Date lastModify, String description) {
 		this.idBook = idBook;
 		this.catergory = catergory;
@@ -89,7 +89,7 @@ public class Book {
 		this.bookName = bookName;
 	}
 
-	public int getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
 
@@ -97,7 +97,7 @@ public class Book {
 		this.price = price;
 	}
 
-	public int getQuantity() {
+	public Integer getQuantity() {
 		return quantity;
 	}
 
