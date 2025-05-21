@@ -1,6 +1,8 @@
 package project.an.bookmanagement.models;
 
 import java.sql.Date;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,8 +23,8 @@ public class Book {
     private Integer idBook;
 	
 	@ManyToOne
-    @JoinColumn(name = "catergory_id", nullable = false)
-    private Catergory catergory;
+    @JoinColumn(name = "category_id", nullable = false)
+    private Catergory category;
 	
 	@Column(name = "book_image")
 	private String bookImage;
@@ -36,8 +38,8 @@ public class Book {
 	@Column(name = "quantity")
 	private Integer quantity;
 	
-	@Column(name = "last_modify")
-	private Date lastModify;
+	@Column(name = "last_modified")
+	private Date lastModified;
 	
 	@Column(name = "description")
 	private String description;
@@ -45,12 +47,12 @@ public class Book {
 	public Book(Integer idBook, Catergory catergory, String bookImage, String bookName, Integer price, Integer quantity,
 			Date lastModify, String description) {
 		this.idBook = idBook;
-		this.catergory = catergory;
+		this.category = catergory;
 		this.bookImage = bookImage;
 		this.bookName = bookName;
 		this.price = price;
 		this.quantity = quantity;
-		this.lastModify = lastModify;
+		this.lastModified = lastModify;
 		this.description = description;
 	}
 
@@ -65,12 +67,12 @@ public class Book {
 		this.idBook = idBook;
 	}
 
-	public Catergory getCatergory() {
-		return catergory;
+	public Catergory getCategory() {
+		return category;
 	}
 
-	public void setCatergory(Catergory catergory) {
-		this.catergory = catergory;
+	public void setCategory(Catergory catergory) {
+		this.category = catergory;
 	}
 
 	public String getBookImage() {
@@ -89,8 +91,10 @@ public class Book {
 		this.bookName = bookName;
 	}
 
-	public Integer getPrice() {
-		return price;
+	public String getPrice() {
+		NumberFormat vnFormat = NumberFormat.getInstance(new Locale("vi", "VN"));
+		String formattedPrice = vnFormat.format(price);
+		return formattedPrice;
 	}
 
 	public void setPrice(int price) {
@@ -105,12 +109,12 @@ public class Book {
 		this.quantity = quantity;
 	}
 
-	public Date getLastModify() {
-		return lastModify;
+	public Date getlastModified() {
+		return lastModified;
 	}
 
-	public void setLastModify(Date lastModify) {
-		this.lastModify = lastModify;
+	public void setlastModified(Date lastModify) {
+		this.lastModified = lastModify;
 	}
 
 	public String getDescription() {
