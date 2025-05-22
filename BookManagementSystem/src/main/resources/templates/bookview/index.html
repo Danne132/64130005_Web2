@@ -73,7 +73,7 @@
                                 <td th:text="${item.idBook}">1</td>
                                 <td th:text="${item.bookName}" style="max-width:332px">Tên</td>
                                 <td>
-                                    <img th:src="${item.bookImage != null} ? @{/Images/SanPham/{img}(img=${item.bookImage})} : @{/Images/SanPham/holder.jpg}" width="100" height="100" />
+                                    <img th:src="${item.bookImage != null} ? @{'/book-images/' + ${item.bookImage}} : @{/Images/SanPham/holder.jpg}" width="100" height="auto" />
                                 </td>
                                 <td th:text="${item.quantity >= 0} ? ${item.quantity} : 0">0</td>
                                 <td>

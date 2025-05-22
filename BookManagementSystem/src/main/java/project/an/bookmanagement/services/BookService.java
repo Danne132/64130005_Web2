@@ -50,7 +50,9 @@ public class BookService {
         }
     }
 	
-	
+	public Book SaveBook(Book book) {
+		return bookRepository.save(book);
+	}
 	
 	public Optional<Book> findBookById(Integer id) {
 		return bookRepository.findById(id);

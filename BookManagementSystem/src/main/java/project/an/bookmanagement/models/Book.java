@@ -91,7 +91,11 @@ public class Book {
 		this.bookName = bookName;
 	}
 
-	public String getPrice() {
+	public Integer getPrice() {
+		return price;
+	}
+	
+	public String getPriceFormat() {
 		NumberFormat vnFormat = NumberFormat.getInstance(new Locale("vi", "VN"));
 		String formattedPrice = vnFormat.format(price);
 		return formattedPrice;
