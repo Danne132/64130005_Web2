@@ -74,8 +74,15 @@ public class AdminController {
 	public String getBookDetail(@PathVariable Integer id,
 								ModelMap model) {
 		Optional<Book> book = bookService.findBookById(id);
-		model.addAttribute("book", book.get());
-		return "/bookview/detail";
+	    if (book.isPresent()) {
+	        String authorNames = bookAuthorService.getAuthorsStringByBook(book.get());
+
+	        model.addAttribute("book", book.get());
+	        model.addAttribute("authorsString", authorNames);
+	        return "/bookview/detail";
+	    } else {
+	        return "redirect:/admin/sach"; // hoặc xử lý khi không tìm thấy sách
+	    }
 	}
 	
 	@GetMapping("/sach/create")
@@ -130,6 +137,13 @@ public class AdminController {
 		bookAuthorService.saveBookAuthors(book, authorIdList);
 		return "redirect:/admin/sach";
 	}
+	
+	@GetMapping("/sach/edit/{id}")
+	public String editBook(@PathVariable Integer id,
+						ModelMap model) {
+		return new String();
+	}
+	
 	
 	@GetMapping("/category")
 	public String getCategory(ModelMap model) {

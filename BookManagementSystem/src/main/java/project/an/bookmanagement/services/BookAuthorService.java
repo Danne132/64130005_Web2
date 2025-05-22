@@ -2,6 +2,7 @@ package project.an.bookmanagement.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,13 @@ public class BookAuthorService {
         }
 
         bookAuthorRepository.saveAll(bookAuthors);
+    }
+	
+	public String getAuthorsStringByBook(Book book) {
+        List<BookAuthor> bookAuthors = bookAuthorRepository.findByBook(book);
+
+        return bookAuthors.stream()
+                .map(bookAuthor -> bookAuthor.getAuthor().getAuthorName())
+                .collect(Collectors.joining(", "));
     }
 }

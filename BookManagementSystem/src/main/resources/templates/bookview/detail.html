@@ -23,7 +23,7 @@
 
 <div class="row detail">
     <div class="col-md-4 detail__avatar">
-        <img th:src="@{'/Images/SanPham/' + ${book.bookImage}}" alt="Ảnh đại diện" />
+        <img th:src="${book.bookImage != null} ? @{'/book-images/' + ${book.bookImage}} : @{/Images/SanPham/holder.jpg}" alt="Ảnh đại diện" width="100" height="auto"/>
     </div>
 
     <div class="col-md-8">
@@ -47,10 +47,10 @@
             <label class="control-label">Ngày chỉnh sửa gần nhất: </label>
             <span th:text="${#dates.format(book.lastModified, 'dd/MM/yyyy')}"></span>
         </div>
-<!--         <div class="detail__item">
+        <div class="detail__item">
             <label class="control-label">Tác giả: </label>
-            <span th:text="${book.tacGia.tenTG}"></span>
-        </div> -->
+            <span th:text="${authorsString}"></span>
+        </div>
         <div class="detail__item description-box">
             <label class="control-label">Mô tả: </label>
             <span th:utext="${book.description}"></span> <!-- utext dùng để render HTML -->

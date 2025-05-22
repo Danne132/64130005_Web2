@@ -32,7 +32,7 @@ public class BookService {
 	
 	public Page<Book> searchBooks(String searchKeyword, int page, String sort) {
         int pageSize = 5;
-        Pageable pageable = PageRequest.of(page - 1, pageSize, Sort.by("idBook").ascending());
+        Pageable pageable = PageRequest.of(page - 1, pageSize, Sort.by("bookName").ascending());
 
         if (searchKeyword != null && !searchKeyword.isEmpty()) {
             return bookRepository.searchByNameOrCategory(searchKeyword.toLowerCase(), pageable);
