@@ -10,11 +10,26 @@ import project.an.bookmanagement.models.Book;
 
 public interface BookRepository extends JpaRepository<Book, Integer>{
 	@Query("SELECT COUNT(b) FROM Book b WHERE b.quantity < 50")
-	long countBooksWithLowQuantity();
+	long countByQuantityIsLessThan50();
+	
+	@Query("SELECT COUNT(b) FROM Book b WHERE b.quantity = 0")
+	long countByQuantityEquals0();
 	
 	@Query("SELECT b FROM Book b WHERE " +
 	           "LOWER(b.bookName) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
 	           "OR LOWER(b.category.categoryName) LIKE LOWER(CONCAT('%', :keyword, '%'))")
 	Page<Book> searchByBookNameOrCatergory(@Param("keyword") String keyword, Pageable pageable);
+	
+	@Query("SELECT b FROM Book b WHERE LOWER(b.bookName) LIKE %:keyword% OR LOWER(b.category.categoryName) LIKE %:keyword%")
+	Page<Book> searchByNameOrCategory(@Param("keyword") String keyword, Pageable pageable);
+
+	// Số lượng sách < 50
+	Page<Book> findByQuantityBetween(int min, int max, Pageable pageable);
+
+	// Số lượng = 0
+	Page<Book> findByQuantity(int quantity, Pageable pageable);
+
+	// Sắp xếp theo ngày cập nhật
+	Page<Book> findAllByOrderByLastModifiedDesc(Pageable pageable);
 	
 }

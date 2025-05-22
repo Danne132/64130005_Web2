@@ -1,6 +1,7 @@
 package project.an.bookmanagement.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,17 +23,36 @@ public class BookService {
 	}
 	
 	public long CountBookFewer() {
-		return bookRepository.countBooksWithLowQuantity();
+		return bookRepository.countByQuantityIsLessThan50();
 	}
 	
-	public Page<Book> searchBooks(String searchKeyword, int page) {
+	public long CountBookOutStock() {
+		return bookRepository.countByQuantityEquals0();
+	}
+	
+	public Page<Book> searchBooks(String searchKeyword, int page, String sort) {
         int pageSize = 5;
         Pageable pageable = PageRequest.of(page - 1, pageSize, Sort.by("idBook").ascending());
 
-        if (searchKeyword == null || searchKeyword.trim().isEmpty()) {
-            return bookRepository.findAll(pageable);
+        if (searchKeyword != null && !searchKeyword.isEmpty()) {
+            return bookRepository.searchByNameOrCategory(searchKeyword.toLowerCase(), pageable);
+        } else {
+            switch (sort != null ? sort : "") {
+                case "pre-sold":
+                    return bookRepository.findByQuantityBetween(1, 49, pageable);
+                case "sold":
+                    return bookRepository.findByQuantity(0, pageable);
+                case "now":
+                    return bookRepository.findAllByOrderByLastModifiedDesc(pageable);
+                default:
+                    return bookRepository.findAll(pageable);
+            }
         }
-
-        return bookRepository.searchByBookNameOrCatergory(searchKeyword.trim(), pageable);
     }
+	
+	
+	
+	public Optional<Book> findBookById(Integer id) {
+		return bookRepository.findById(id);
+	}
 }

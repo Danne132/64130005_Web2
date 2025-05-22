@@ -44,7 +44,7 @@
                     <i class='icon bx bxs-user fa-3x'></i>
                     <div class="info">
                         <h4>Sắp hết hàng</h4>
-                        <p><b th:text="${lower} + ' sản phẩm'"></b></p>
+                        <p><b th:text="${low} + ' sản phẩm'"></b></p>
                         <p class="info-tong">Số sản phẩm cảnh báo có số lượng dưới 50.</p>
                     </div>
                 </div>
@@ -54,8 +54,7 @@
                     <i class='icon bx bxs-error-alt fa-3x'></i>
                     <div class="info">
                         <h4>Hết hàng</h4>
-                        <!-- <p><b th:text="${dsSach.stream().filter(s -> s.soLuong < 50 and s.soLuong > 0).count()} + ' sản phẩm'"></b></p> -->
-                        <p><b>40</b></p>
+                        <p><b th:text="${out} + ' sản phẩm'">40</b></p>
                         <p class="info-tong">Số sản phẩm cảnh báo có số lượng bằng 0</p>
                     </div>
                 </div>

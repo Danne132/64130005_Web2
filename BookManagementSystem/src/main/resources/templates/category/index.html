@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" th:href="@{/Assets/Admin/css/main.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Thể loại</title>
+    <th:block th:replace="fragments/header :: header"></th:block>
+</head>
+<body class="app sidebar-mini rtl">
+
+<div th:replace="fragments/sidebar :: sidebar"></div>
+
+<main class="app-content">
+<div class="app-title">
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item active"><a href="#"><b>Danh mục thể loại</b></a></li>
+    </ul>
+    <div id="clock"></div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+                <div class="row element-button">
+                    <div class="col-sm-2">
+                        <a class="btn btn-delete print-file btn-sm" th:href="@{/admin/category/create}">
+                            <i class="fas fa-plus"></i>
+                            Thêm thể loại mới
+                        </a>
+                    </div>
+                </div>
+
+                <table class="table table-hover table-bordered" id="sampleTable">
+                    <thead>
+                        <tr>
+                            <th>Số thứ tự</th>
+                            <th>Tên thể loại</th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="item : ${categories}">
+                            <td th:text="${item.idCategory}">Mã</td>
+                            <td th:text="${item.categoryName}">Tên</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
+                                        th:onclick="'location.href=\'/theloai/delete/' + ' + ' + ${item.idCategory} + '\''">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"
+                                        th:onclick="'location.href=\'/theloai/edit/' + ' + ' + ${item.idCategory} + '\''">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</main>
+
+<div th:replace="fragments/script :: scripts"></div>
+
+</body>
+</html>

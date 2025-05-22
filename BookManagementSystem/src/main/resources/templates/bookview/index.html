@@ -25,27 +25,27 @@
             <div class="tile-body">
                 <div class="row element-button">
                     <div class="col-sm-2">
-                        <a class="btn btn-add btn-sm" th:href="@{/category}"><i class="fas fa-folder-plus"></i> Danh mục thể loại</a>
+                        <a class="btn btn-add btn-sm" th:href="@{/admin/category}"><i class="fa fa-folder"></i> Danh mục thể loại</a>
                     </div>
                     <div class="col-sm-2">
-                        <a class="btn btn-delete print-file btn-sm" th:href="@{/book/create}"><i class="fas fa-plus"></i> Thêm sách</a>
+                        <a class="btn btn-delete print-file btn-sm" th:href="@{/admin/sach/create}"><i class="fa fa-plus"></i> Thêm sách</a>
                     </div>
                     <div class="col-sm-2">
-                        <a class="btn btn-warning btn-sm" th:href="@{/sach?sort=pre-sold}">Sắp hết hàng</a>
+                        <a class="btn btn-warning btn-sm" th:href="@{/admin/sach?sort=pre-sold}">Sắp hết hàng</a>
                     </div>
                     <div class="col-sm-2">
-                        <a class="btn btn-danger btn-sm" th:href="@{/sach?sort=sold}">Hết hàng</a>
+                        <a class="btn btn-danger btn-sm" th:href="@{/admin/sach?sort=sold}">Hết hàng</a>
                     </div>
                     <div class="col-sm-2">
-                        <a class="btn btn-light btn-sm" th:href="@{/sach?sort=now}">Cập nhật lần cuối</a>
+                        <a class="btn btn-light btn-sm" th:href="@{/admin/sach?sort=now}">Cập nhật lần cuối</a>
                     </div>
                     <div class="col-sm-2">
-                        <a class="btn btn-success btn-sm" th:href="@{/sach}">Mặc định</a>
+                        <a class="btn btn-success btn-sm" th:href="@{/admin/sach}">Mặc định</a>
                     </div>
                 </div>
 
                 <!-- Tìm kiếm -->
-                <form th:action="@{/book}" method="get" class="dataTables_filter d-flex justify-content-end">
+                <form th:action="@{/admin/sach}" method="get" class="dataTables_filter d-flex justify-content-end">
                     <label class="w-50">
                         Tìm kiếm:
                         <input type="text" name="searchString" class="form-control form-control-sm"
@@ -86,7 +86,7 @@
                                 <td>
                                     <a th:href="@{/sach/delete/{id}(id=${item.idBook})}" class="btn btn-primary btn-sm trash" title="Xóa"><i class="fa fa-trash"></i></a>
                                     <a th:href="@{/sach/edit/{id}(id=${item.idBook})}" class="btn btn-primary btn-sm edit" title="Sửa"><i class="fa fa-edit"></i></a>
-                                    <a th:href="@{/sach/details/{id}(id=${item.idBook})}" class="btn btn-primary btn-sm user-btn" title="Xem thông tin"><i class="fa fa-user"></i></a>
+                                    <a th:href="@{/admin/sach/detail/{id}(id=${item.idBook})}" class="btn btn-primary btn-sm user-btn" title="Xem thông tin"><i class="fa fa-user"></i></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -97,7 +97,7 @@
                 <div class="MenuTrang pagination" th:if="${sachList.totalPages > 1}">
                     <ul class="pagination">
                         <li class="page-item" th:each="i : ${#numbers.sequence(1, sachList.totalPages)}">
-                            <a class="page-link" th:href="@{/admin/sach(page=${i})}" th:text="${i}">1</a>
+                            <a class="page-link" th:href="@{/admin/sach(page=${i}, sort=${sort}, searchString=${searchString})}" th:text="${i}">1</a>
                         </li>
                     </ul>
                 </div>

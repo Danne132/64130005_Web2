@@ -109,11 +109,11 @@ public class Book {
 		this.quantity = quantity;
 	}
 
-	public Date getlastModified() {
+	public Date getLastModified() {
 		return lastModified;
 	}
 
-	public void setlastModified(Date lastModify) {
+	public void setLastModified(Date lastModify) {
 		this.lastModified = lastModify;
 	}
 
