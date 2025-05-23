@@ -12,6 +12,177 @@
 <div th:replace="fragments/sidebar :: sidebar"></div>
 
 <main class="app-content">
+<form th:action="@{/admin/sach/edit}" th:object="${book}" method="post" enctype="multipart/form-data">
+    <input type="hidden" th:field="*{idBook}" />
+    <div class="form-horizontal">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tile">
+                    <h3 class="tile-title">Chỉnh sửa sản phẩm</h3>
+                    <div class="tile-body">
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label>Mã sản phẩm</label>
+                                <input type="text" th:field="*{idBook}" class="form-control"/>
+                                <div th:if="${#fields.hasErrors('idBook')}" th:errors="*{idBook}" class="text-danger"></div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>Tên sản phẩm</label>
+                                <input type="text" th:field="*{bookName}" class="form-control"/>
+                                <div th:if="${#fields.hasErrors('bookName')}" th:errors="*{bookName}" class="text-danger"></div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>Nhập hàng</label>
+                                <input type="number" th:field="*{quantity}" class="form-control"/>
+                                <div th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}" class="text-danger"></div>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label>Thể loại</label>
+                                <select th:field="*{category.idCategory}" class="form-control">
+                                    <option th:each="item : ${categories}" th:value="${item.idCategory}" th:text="${item.categoryName}"></option>
+                                </select>
+                                <div th:if="${#fields.hasErrors('category.idCategory')}" th:errors="*{category.idCategory}" class="text-danger"></div>
+                            </div>
+
+					
+							<div class="form-group col-md-6">
+							    <label>Thêm tác giả:</label>
+							    <div class="input-group mb-2">
+							        <select id="authorSelect" class="form-control">
+							            <option value="">-- Chọn tác giả --</option>
+							            <option th:each="tg : ${authors}"
+							                    th:value="${tg.idAuthor}"
+							                    th:text="${tg.authorName}"></option>
+							        </select>
+							        <div class="input-group-append">
+							            <button type="button" class="btn btn-primary" onclick="addAuthor()">Thêm tác giả</button>
+							        </div>
+							    </div>
+							</div>
+							
+							<!-- Hiển thị danh sách tác giả đã chọn -->
+							<div class="form-group col-md-12">
+							    <label>Tác giả hiện tại:</label>
+							    <div id="selectedAuthors">
+							        <span th:each="author : ${bookAuthors}"
+							              class="badge badge-info mx-1 author-badge"
+							              th:attr="data-id=${author.idAuthor}, data-name=${author.authorName}"
+							              th:text="${author.authorName}"
+							              onclick="removeAuthor(this)">
+							        </span>
+							    </div>
+							</div>
+							
+							<!-- Input ẩn để lưu danh sách tác giả gửi về server -->
+							<div id="authorInputs"></div>
+
+
+                            <div class="form-group col-md-3">
+                                <label>Đơn giá</label>
+                                <input type="text" th:field="*{price}" class="form-control"/>
+                                <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></div>
+                            </div>
+
+                            <div class="form-group col-md-8">
+                                <label>Mô tả</label>
+                                <textarea th:field="*{description}" class="form-control"></textarea>
+                                <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label>Ảnh sản phẩm</label>
+                                <input type="file" name="file" class="form-control" id="file"/>
+                                <div th:if="${#fields.hasErrors('bookImage')}" th:errors="*{bookImage}" class="text-danger"></div>
+
+                                <div id="thumbbox">
+                                    <img th:src="@{'/book-images/' + ${bookImage}}"
+                                         id="thumbimage"
+                                         width="400" height="450"
+                                         style="display: none;" />
+                                    <a class="removeimg" href="javascript:">Xóa ảnh</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="submit" value="Chỉnh sửa thông tin sản phẩm" class="btn btn-save"/>
+                    <a class="btn btn-cancel" th:href="@{/admin/sach}">Hủy bỏ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    document.getElementById("file").addEventListener("change", function (event) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var image = document.getElementById("thumbimage");
+            image.src = e.target.result;
+            image.style.display = "block";
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    });
+    const selectedAuthors = new Set(); // Để lưu các id đã chọn
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Lấy các badge đã có từ server
+        const badges = document.querySelectorAll("#selectedAuthors .author-badge");
+        badges.forEach(badge => {
+            const id = badge.getAttribute("data-id");
+            selectedAuthors.add(id);
+            updateHiddenInputs();
+        });
+    });
+
+    function addAuthor() {
+        const select = document.getElementById("authorSelect");
+        const id = select.value;
+        const name = select.options[select.selectedIndex].text;
+
+        if (!id || selectedAuthors.has(id)) {
+            return; // Không thêm nếu chưa chọn hoặc đã tồn tại
+        }
+
+        selectedAuthors.add(id);
+
+        const span = document.createElement("span");
+        span.className = "badge badge-info mx-1 author-badge";
+        span.setAttribute("data-id", id);
+        span.setAttribute("data-name", name);
+        span.innerText = name;
+        span.onclick = function () {
+            removeAuthor(span);
+        };
+
+        document.getElementById("selectedAuthors").appendChild(span);
+        updateHiddenInputs();
+    }
+
+    function removeAuthor(element) {
+        const name = element.getAttribute("data-name");
+        const id = element.getAttribute("data-id");
+
+        if (confirm("Bạn có chắc muốn xoá tác giả '" + name + "'?")) {
+            element.remove();
+            selectedAuthors.delete(id);
+            updateHiddenInputs();
+        }
+    }
+
+    function updateHiddenInputs() {
+        const container = document.getElementById("authorInputs");
+        container.innerHTML = ""; // Clear trước
+
+        selectedAuthors.forEach(id => {
+            const input = document.createElement("input");
+            input.type = "hidden";
+            input.name = "authorIds"; // phải khớp với tên biến bạn nhận ở controller
+            input.value = id;
+            container.appendChild(input);
+        });
+    }
+</script>
 
 </main>
 

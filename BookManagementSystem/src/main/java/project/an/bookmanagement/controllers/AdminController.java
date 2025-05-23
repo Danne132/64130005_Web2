@@ -141,7 +141,26 @@ public class AdminController {
 	@GetMapping("/sach/edit/{id}")
 	public String editBook(@PathVariable Integer id,
 						ModelMap model) {
-		return new String();
+		Optional<Book> book = bookService.findBookById(id);
+		List<Catergory> catergories = categoryService.getAllCategory();
+		List<Author> allAuthors = authorService.getAllAuthor();
+		List<Author> bookAuthors = bookAuthorService.findAuthorsByBook(book.get());
+		model.addAttribute("book",book);
+		model.addAttribute("categories", catergories);
+		model.addAttribute("authors", allAuthors);
+		model.addAttribute("bookAuthors", bookAuthors);
+		return "bookview/edit";
+	}
+	
+	@PostMapping("/sach/edit")
+	public String saveBook(
+	        @ModelAttribute Book book,
+	        @RequestParam("authorIds") List<Integer> authorIds) {
+
+//	    bookService.SaveBook(book);
+	    bookAuthorService.updateAuthorsForBook(book, authorIds);
+
+	    return "redirect:/admin/sach";
 	}
 	
 	

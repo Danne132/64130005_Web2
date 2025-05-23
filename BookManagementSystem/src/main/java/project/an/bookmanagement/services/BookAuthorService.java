@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import project.an.bookmanagement.models.Author;
 import project.an.bookmanagement.models.Book;
@@ -39,11 +40,26 @@ public class BookAuthorService {
         bookAuthorRepository.saveAll(bookAuthors);
     }
 	
+	@Transactional
+	public void updateAuthorsForBook(Book book, List<Integer> authorIds) {
+
+        bookAuthorRepository.deleteByBook(book);
+
+        saveBookAuthors(book, authorIds);
+    }
+	
 	public String getAuthorsStringByBook(Book book) {
         List<BookAuthor> bookAuthors = bookAuthorRepository.findByBook(book);
 
         return bookAuthors.stream()
                 .map(bookAuthor -> bookAuthor.getAuthor().getAuthorName())
                 .collect(Collectors.joining(", "));
+    }
+	
+	public List<Author> findAuthorsByBook(Book book) {
+        List<BookAuthor> bookAuthors = bookAuthorRepository.findByBook(book);
+        return bookAuthors.stream()
+                          .map(BookAuthor::getAuthor)
+                          .collect(Collectors.toList());
     }
 }

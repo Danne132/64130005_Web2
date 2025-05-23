@@ -9,4 +9,5 @@ import project.an.bookmanagement.models.BookAuthor;
 
 public interface BookAuthorRepository extends JpaRepository<BookAuthor, Integer>{
 	List<BookAuthor> findByBook(Book book);
+	void deleteByBook(Book book);
 }
