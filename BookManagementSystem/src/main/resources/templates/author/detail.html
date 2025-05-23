@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" th:href="@{/Assets/Admin/css/main.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title th:text="${author.authorName}"></title>
+    <th:block th:replace="fragments/header :: header"></th:block>
+</head>
+<body class="app sidebar-mini rtl">
+
+<div th:replace="fragments/sidebar :: sidebar"></div>
+
+<main class="app-content">
+<div class="app-title">
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item active">
+            <a href="#"><b>Tác giả: <span th:text="${author.authorName}"></span></b></a>
+        </li>
+    </ul>
+    <div id="clock"></div>
+</div>
+<div class="row detail">
+	<div class=col-md-6>
+		<div id="sach-container">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th style="max-width:332px">Tên sách</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="item,iterStat  : ${books}">
+                                <td th:text="${iterStat.index + 1}">1</td>
+                                <td th:text="${item.bookName}" style="max-width:332px">Tên</td>
+                                <td th:text="${''}">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+	</div>
+    <div class="col-md-6">
+        <div class="detail__item">
+            <label class="control-label">Tên tác giả: </label>
+            <span th:text="${author.authorName}"></span>
+        </div>
+        <div class="detail__item">
+            <label class="control-label">Tiểu sử: </label>
+            <div  style="min-height: 300px; min-width: 90%; border: 0.5px solid black; border-radius: 10px ;background: white;">
+            <span th:utext="${author.bio}"></span> <!-- utext dùng để render HTML -->
+            </div>
+            
+        </div>
+	
+        <div class="row btn">
+            <button class="btn btn-save btn-sm edit" type="button" title="Sửa"
+                    th:onclick="'location.href=\'/admin/tacgia/edit/' + ' + ' + ${author.idAuthor} + '\''">
+                Chỉnh sửa thông tin
+            </button>
+            <a class="btn btn-cancel" th:href="@{/admin/tacgia}">Hủy bỏ</a>
+        </div>
+    </div>
+</div>
+</main>
+
+<div th:replace="fragments/script :: scripts"></div>
+
+</body>
+</html>

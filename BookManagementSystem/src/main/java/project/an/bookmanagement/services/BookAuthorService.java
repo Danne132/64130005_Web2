@@ -49,12 +49,25 @@ public class BookAuthorService {
     }
 	
 	public String getAuthorsStringByBook(Book book) {
-        List<BookAuthor> bookAuthors = bookAuthorRepository.findByBook(book);
+	    List<BookAuthor> bookAuthors = bookAuthorRepository.findByBook(book);
+	    List<String> authorNamesRaw = bookAuthors.stream()
+	            .map(bookAuthor -> bookAuthor.getAuthor().getAuthorName())
+	            .collect(Collectors.toList());
 
-        return bookAuthors.stream()
-                .map(bookAuthor -> bookAuthor.getAuthor().getAuthorName())
-                .collect(Collectors.joining(", "));
-    }
+	    if (authorNamesRaw.isEmpty()) return "";
+
+	    List<String> formattedNames = new ArrayList<>();
+	    for (int i = 0; i < authorNamesRaw.size(); i++) {
+	        String name = authorNamesRaw.get(i);
+	        if (i == 0) {
+	            formattedNames.add("<u>" + name + "</u>");
+	        } else {
+	            formattedNames.add(name);
+	        }
+	    }
+
+	    return String.join(", ", formattedNames);
+	}
 	
 	public List<Author> findAuthorsByBook(Book book) {
         List<BookAuthor> bookAuthors = bookAuthorRepository.findByBook(book);
@@ -62,4 +75,15 @@ public class BookAuthorService {
                           .map(BookAuthor::getAuthor)
                           .collect(Collectors.toList());
     }
+	
+	public List<Book> findBooksByAuthor(Author author){
+		List<BookAuthor> bookAuthors = bookAuthorRepository.findByAuthor(author);
+		return bookAuthors.stream()
+						  .map(BookAuthor::getBook)
+						  .collect(Collectors.toList());
+	}
+	
+	public long countBooksByAuthor(Integer authorId) {
+		return bookAuthorRepository.countBooksByAuthorId(authorId);
+	}
 }

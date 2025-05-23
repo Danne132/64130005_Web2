@@ -98,7 +98,7 @@ public class AdminController {
 	
 	@PostMapping("/sach/create")
 	public String createBook(@ModelAttribute Book book,
-							 @RequestParam("authorIds") String authorIds,
+							 @RequestParam("selectedAuthorIds") List<Integer> authorIds,
 							 @RequestParam("file") MultipartFile file) {
 		System.out.println(file);
 		if (!file.isEmpty()) {
@@ -123,18 +123,8 @@ public class AdminController {
 	    }
 		
 		bookService.SaveBook(book);
-		List<Integer> authorIdList = new ArrayList<>();
 
-		if (authorIds != null && !authorIds.trim().isEmpty()) {
-		    authorIdList = Arrays.stream(authorIds.split(","))
-		                         .map(String::trim) // Xóa khoảng trắng nếu có
-		                         .filter(s -> !s.isEmpty()) // Bỏ phần tử rỗng nếu người dùng nhấn chọn/hủy nhanh
-		                         .map(Integer::parseInt)
-		                         .collect(Collectors.toList());
-		}
-
-
-		bookAuthorService.saveBookAuthors(book, authorIdList);
+		bookAuthorService.saveBookAuthors(book, authorIds);
 		return "redirect:/admin/sach";
 	}
 	
@@ -170,4 +160,26 @@ public class AdminController {
 		model.addAttribute("categories", catergories);
 		return "category/index";
 	}
+	
+	@GetMapping("/tacgia")
+	public String getAllAuthor(@RequestParam(name = "searchString", required = false) String search,
+							   ModelMap model) {
+		List<Author> authors = authorService.searchAuthors(search);
+		for (Author author : authors) {
+			author.setCountBook(bookAuthorService.countBooksByAuthor(author.getIdAuthor()));
+		}
+		model.addAttribute("authors",authors);
+		return "author/index";
+	}
+	
+	@GetMapping("/tacgia/detail/{id}")
+	public String getMethodName(@PathVariable Integer id,
+								ModelMap model) {
+		Optional<Author> author = authorService.getAuthorById(id);
+		List<Book> books = bookAuthorService.findBooksByAuthor(author.get());
+		model.addAttribute("author",author.get());
+		model.addAttribute("books",books);	
+		return "author/detail";
+	}
+	
 }

@@ -30,6 +30,6 @@ public interface BookRepository extends JpaRepository<Book, Integer>{
 	Page<Book> findByQuantity(int quantity, Pageable pageable);
 
 	// Sắp xếp theo ngày cập nhật
-	Page<Book> findAllByOrderByLastModifiedDesc(Pageable pageable);
+	Page<Book> findAllByOrderByLastModified(Pageable pageable);
 	
 }

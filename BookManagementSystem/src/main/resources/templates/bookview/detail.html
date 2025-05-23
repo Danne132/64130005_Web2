@@ -4,7 +4,7 @@
 	<link rel="stylesheet" th:href="@{/Assets/Admin/css/main.css}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Sách</title>
+    <title th:text="${book.bookName}">Sách</title>
     <th:block th:replace="fragments/header :: header"></th:block>
 </head>
 <body class="app sidebar-mini rtl">
@@ -49,19 +49,19 @@
         </div>
         <div class="detail__item">
             <label class="control-label">Tác giả: </label>
-            <span th:text="${authorsString}"></span>
+            <span th:utext="${authorsString}"></span>
         </div>
-        <div class="detail__item description-box">
+        <div class="detail__item">
             <label class="control-label">Mô tả: </label>
             <span th:utext="${book.description}"></span> <!-- utext dùng để render HTML -->
         </div>
 
         <div class="row btn">
             <button class="btn btn-save btn-sm edit" type="button" title="Sửa"
-                    th:onclick="'location.href=\'/sach/edit/' + ' + ' + ${book.idBook} + '\''">
+                    th:onclick="'location.href=\'/admin/sach/edit/' + ' + ' + ${book.idBook} + '\''">
                 Chỉnh sửa thông tin
             </button>
-            <a class="btn btn-cancel" th:href="@{/sach}">Hủy bỏ</a>
+            <a class="btn btn-cancel" th:href="@{/admin/sach}">Hủy bỏ</a>
         </div>
     </div>
 </div>

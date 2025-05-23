@@ -43,7 +43,7 @@ public class BookService {
                 case "sold":
                     return bookRepository.findByQuantity(0, pageable);
                 case "now":
-                    return bookRepository.findAllByOrderByLastModifiedDesc(pageable);
+                    return bookRepository.findAllByOrderByLastModified(pageable);
                 default:
                     return bookRepository.findAll(pageable);
             }

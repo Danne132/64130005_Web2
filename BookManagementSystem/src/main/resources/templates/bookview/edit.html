@@ -23,7 +23,7 @@
                         <div class="row">
                             <div class="form-group col-md-3">
                                 <label>Mã sản phẩm</label>
-                                <input type="text" th:field="*{idBook}" class="form-control"/>
+                                <input type="text" th:field="*{idBook}" class="form-control" disabled/>
                                 <div th:if="${#fields.hasErrors('idBook')}" th:errors="*{idBook}" class="text-danger"></div>
                             </div>
                             <div class="form-group col-md-3">
@@ -56,10 +56,16 @@
 							                    th:text="${tg.authorName}"></option>
 							        </select>
 							        <div class="input-group-append">
-							            <button type="button" class="btn btn-primary" onclick="addAuthor()">Thêm tác giả</button>
+							            <button type="button" class="btn btn-primary mx-1 my-0" onclick="addAuthor()">Thêm tác giả</button>
 							        </div>
 							    </div>
 							</div>
+							
+							<div class="form-group col-md-3">
+                                <label>Đơn giá</label>
+                                <input type="text" th:field="*{price}" class="form-control"/>
+                                <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></div>
+                            </div>
 							
 							<!-- Hiển thị danh sách tác giả đã chọn -->
 							<div class="form-group col-md-12">
@@ -78,11 +84,7 @@
 							<div id="authorInputs"></div>
 
 
-                            <div class="form-group col-md-3">
-                                <label>Đơn giá</label>
-                                <input type="text" th:field="*{price}" class="form-control"/>
-                                <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></div>
-                            </div>
+
 
                             <div class="form-group col-md-8">
                                 <label>Mô tả</label>

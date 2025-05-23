@@ -1,11 +1,13 @@
 package project.an.bookmanagement.models;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "author")
@@ -21,6 +23,9 @@ public class Author {
 
 	@Column(name = "bio", nullable = true)
 	private String bio;
+	
+	@Transient
+	private Long countBook;
 
 	public Author(Integer idAuthor, String authorName, String bio) {
 		this.idAuthor = idAuthor;
@@ -52,6 +57,14 @@ public class Author {
 
 	public void setBio(String bio) {
 		this.bio = bio;
+	}
+
+	public Long getCountBook() {
+		return countBook;
+	}
+
+	public void setCountBook(Long countBook) {
+		this.countBook = countBook;
 	}
 	
 	

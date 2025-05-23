@@ -6,6 +6,22 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Sách</title>
     <th:block th:replace="fragments/header :: header"></th:block>
+    <style>
+    .author-badge {
+        cursor: pointer;
+        margin-right: 5px;
+    }
+
+    .author-badge.primary {
+        background-color: #007bff !important;
+        color: white;
+    }
+
+    .author-badge.secondary {
+        background-color: #6c757d !important;
+        color: white;
+    }
+</style>
 </head>
 <body class="app sidebar-mini rtl">
 
@@ -39,20 +55,30 @@
                                     <option th:each="cat : ${categories}" th:value="${cat.idCategory}" th:text="${cat.categoryName}"></option>
                                 </select>
                             </div>
-							<div class="form-group col-md-8">
-                                <label>Tác giả</label>
-                                <select name="author"id="authorSelect" class="form-control">
-                                    <option th:each="auth : ${authors}" th:value="${auth.idAuthor}" th:text="${auth.authorName}"></option>
-                                </select>
-                                <div class="mt-2">
-								    <p id="selectedAuthorsDisplay"></p>
-								</div>
-								<input type="hidden" name="authorIds" id="authorIds" />
-                            </div>
-                            <div class="form-group col-md-4">
+							<div class="form-group col-md-6">
+							    <label>Thêm tác giả:</label>
+							    <div class="input-group mb-2">
+							        <select id="authorSelect" class="form-control">
+							            <option value="">-- Chọn tác giả --</option>
+							            <option th:each="tg : ${authors}"
+							                    th:value="${tg.idAuthor}"
+							                    th:text="${tg.authorName}"></option>
+							        </select>
+							        <div class="input-group-append mx-1">
+							            <button type="button" class="btn btn-primary my-0" onclick="addAuthor()">Thêm tác giả</button>
+							        </div>
+							    </div>
+							</div>
+							<div class="form-group col-md-4">
                                 <label>Đơn giá</label>
                                 <input type="text" th:field="*{price}" class="form-control" />
                             </div>
+							<div class="form-group col-md-12">
+							    <label>Tác giả hiện tại:</label>
+							    <div id="selectedAuthors">
+							        <!-- Tác giả sẽ được hiển thị tại đây -->
+							    </div>
+							</div>
 							<div class="form-group col-md-4">
                                 <label>Ảnh sản phẩm</label>
                                 <input type="file" name="file" class="form-control" onchange="previewImage(event)" />
@@ -84,27 +110,56 @@
         }
         reader.readAsDataURL(event.target.files[0]);
     }
-    const selectedAuthors = new Map(); // Key: ID, Value: Tên
-    const selectBox = document.getElementById("authorSelect");
-    const display = document.getElementById("selectedAuthorsDisplay");
-    const hiddenInput = document.getElementById("authorIds");
+    let selectedAuthors = [];
 
-    selectBox.addEventListener("change", function () {
-        const selectedOption = this.options[this.selectedIndex];
-        const id = selectedOption.value;
-        const name = selectedOption.text;
+    function renderAuthors() {
+        const container = document.getElementById("selectedAuthors");
+        container.innerHTML = "";
 
-        // Nếu đã chọn thì bỏ chọn
-        if (selectedAuthors.has(id)) {
-            selectedAuthors.delete(id);
-        } else {
-            selectedAuthors.set(id, name);
+        selectedAuthors.forEach((author, index) => {
+            const span = document.createElement("span");
+            span.className = "badge badge-info mx-1" + (index === 0 ? " bg-primary" : "");
+            span.style.cursor = "pointer";
+            span.textContent = author.authorName || author.name;
+
+            span.onclick = function () {
+                if (confirm("Bạn có chắc muốn xoá tác giả '" + span.textContent + "'?")) {
+                    removeAuthor(author.idAuthor || author.id);
+                }
+            };
+
+            // Hidden input để gửi về server
+            const hidden = document.createElement("input");
+            hidden.type = "hidden";
+            hidden.name = "selectedAuthorIds";
+            hidden.value = author.idAuthor || author.id;
+
+            container.appendChild(span);
+            container.appendChild(hidden);
+        });
+    }
+
+    function addAuthor() {
+        const select = document.getElementById("authorSelect");
+        const authorId = select.value;
+        const authorName = select.options[select.selectedIndex].text;
+
+        if (!authorId || selectedAuthors.find(a => a.id == authorId || a.idAuthor == authorId)) {
+            alert("Tác giả đã được chọn hoặc không hợp lệ.");
+            return;
         }
 
-        // Cập nhật UI
-        display.innerText = Array.from(selectedAuthors.values()).join(", ");
-        hiddenInput.value = Array.from(selectedAuthors.keys()).join(",");
-    });
+        selectedAuthors.push({ id: parseInt(authorId), name: authorName });
+        renderAuthors();
+    }
+
+    function removeAuthor(authorId) {
+        selectedAuthors = selectedAuthors.filter(a => (a.id || a.idAuthor) != authorId);
+        renderAuthors();
+    }
+
+    // Gọi khi load để hiển thị ban đầu
+    window.onload = renderAuthors;
 </script>
 </main>
 
