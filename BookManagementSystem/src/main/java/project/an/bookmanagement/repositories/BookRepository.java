@@ -15,10 +15,16 @@ public interface BookRepository extends JpaRepository<Book, Integer>{
 	@Query("SELECT COUNT(b) FROM Book b WHERE b.quantity = 0")
 	long countByQuantityEquals0();
 	
-	@Query("SELECT b FROM Book b WHERE " +
-	           "LOWER(b.bookName) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
-	           "OR LOWER(b.category.categoryName) LIKE LOWER(CONCAT('%', :keyword, '%'))")
-	Page<Book> searchByBookNameOrCatergory(@Param("keyword") String keyword, Pageable pageable);
+	@Query("""
+	        SELECT DISTINCT ba.book FROM BookAuthor ba
+	        JOIN ba.book b
+	        LEFT JOIN b.category c
+	        JOIN ba.author a
+	        WHERE LOWER(b.bookName) LIKE %:keyword%
+	           OR LOWER(c.categoryName) LIKE %:keyword%
+	           OR LOWER(a.authorName) LIKE %:keyword%
+	    """)
+	    Page<Book> searchByNameCategoryOrAuthor(@Param("keyword") String keyword, Pageable pageable);
 	
 	@Query("SELECT b FROM Book b WHERE LOWER(b.bookName) LIKE %:keyword% OR LOWER(b.category.categoryName) LIKE %:keyword%")
 	Page<Book> searchByNameOrCategory(@Param("keyword") String keyword, Pageable pageable);

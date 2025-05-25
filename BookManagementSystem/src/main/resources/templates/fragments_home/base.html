@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title} ?: 'Trang quản trị'">Trang quản trị</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    	
+
+    <!-- Để override thêm nếu cần -->
+    <th:block th:replace="~{::head-extra}"></th:block>
+</head>
+<body class="app sidebar-mini rtl">
+
+<!-- Header -->
+<div th:replace="fragments_home/header :: navheader"></div>
+
+<!-- Sidebar -->
+
+
+<!-- Nội dung chính -->
+<main class="app-content">
+    <th:block th:replace="~{::content}"></th:block>
+</main>
+<div th:replace="fragments_home/footer :: footer"></div>
+<!-- Scripts -->
+<div th:replace="fragments/scripts :: scripts"></div>
+<th:block th:replace="~{::scripts-extra}"></th:block>
+
+</body>
+</html>

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import project.an.bookmanagement.models.Author;
 import project.an.bookmanagement.models.Book;
@@ -64,7 +65,7 @@ public class AdminController {
 							@RequestParam(name = "searchString", required = false) String search,
             				@RequestParam(defaultValue = "1") int page,
             				ModelMap model) {
-		Page<Book> sachList = bookService.searchBooks(search, page, sort);
+		Page<Book> sachList = bookService.searchBooks(search, page, sort, 5);
 	    model.addAttribute("sachList", sachList);
 	    model.addAttribute("searchString", search);
 		return "bookview/index";
@@ -153,6 +154,17 @@ public class AdminController {
 	    return "redirect:/admin/sach";
 	}
 	
+	@GetMapping("/sach/delete/{id}")
+	public String deleteBook(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
+	    try {
+	        bookService.deleteById(id);
+	        redirectAttributes.addFlashAttribute("successMessage", "Xóa sách thành công!");
+	    } catch (Exception e) {
+	        redirectAttributes.addFlashAttribute("errorMessage", "Không thể xóa sách. Có thể sách đang được liên kết.");
+	    }
+	    return "redirect:/admin/sach";
+	}
+	
 	
 	@GetMapping("/category")
 	public String getCategory(ModelMap model) {
@@ -173,8 +185,8 @@ public class AdminController {
 	}
 	
 	@GetMapping("/tacgia/detail/{id}")
-	public String getMethodName(@PathVariable Integer id,
-								ModelMap model) {
+	public String getAuthorDetail(@PathVariable Integer id,
+								  ModelMap model) {
 		Optional<Author> author = authorService.getAuthorById(id);
 		List<Book> books = bookAuthorService.findBooksByAuthor(author.get());
 		model.addAttribute("author",author.get());
@@ -182,4 +194,29 @@ public class AdminController {
 		return "author/detail";
 	}
 	
+	@GetMapping("tacgia/edit/{id}")
+	public String editAuthor(@PathVariable Integer id,
+							 ModelMap model) {
+		Optional<Author> author = authorService.getAuthorById(id);
+		model.addAttribute("author",author.get());
+		return "author/edit";
+	}
+	
+	@PostMapping("/tacgia/edit")
+	public String saveEditedAuthor(@ModelAttribute("author") Author author) {
+	    authorService.saveAuthor(author);
+	    return "redirect:/admin/tacgia"; // quay về danh sách tác giả
+	}
+	
+	@GetMapping("/tacgia/create")
+	public String getcreateAuthor(ModelMap model) {
+		model.addAttribute("author", new Author());
+		return "author/create";
+	}
+	
+	@PostMapping("/tacgia/create")
+	public String createAuthor(@ModelAttribute("author") Author author) {
+	    authorService.saveAuthor(author);
+	    return "redirect:/admin/tacgia";
+	}
 }

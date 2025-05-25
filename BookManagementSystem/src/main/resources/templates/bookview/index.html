@@ -84,7 +84,7 @@
                                 <td th:text="${item.price}">100.000đ</td>
                                 <td th:text="${item.category.categoryName}">Thể loại</td>
                                 <td>
-                                    <a th:href="@{/sach/delete/{id}(id=${item.idBook})}" class="btn btn-primary btn-sm trash" title="Xóa"><i class="fa fa-trash"></i></a>
+                                    <a th:href="@{/admin/sach/delete/{id}(id=${item.idBook})}" class="btn btn-primary btn-sm trash" title="Xóa" onclick="return confirm('Bạn có chắc muốn xóa sách này?')"><i class="fa fa-trash"></i></a>
                                     <a th:href="@{/admin/sach/edit/{id}(id=${item.idBook})}" class="btn btn-primary btn-sm edit" title="Sửa"><i class="fa fa-edit"></i></a>
                                     <a th:href="@{/admin/sach/detail/{id}(id=${item.idBook})}" class="btn btn-primary btn-sm user-btn" title="Xem thông tin"><i class="fa fa-user"></i></a>
                                 </td>

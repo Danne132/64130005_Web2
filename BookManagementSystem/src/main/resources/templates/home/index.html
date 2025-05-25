@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Trang chủ</title>
+    <th:block th:replace="fragments_home/header :: navheader"></th:block>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" th:href="@{/Assets/Css/base.css}" />
+    <link rel="stylesheet" th:href="@{/Assets/Css/main.css}" />
+    <link rel="stylesheet" th:href="@{/Assets/Css/responsive.css}" />
+</head>
+<body class="app sidebar-mini rtl">
+
+<main class="app-content">
+<input type="hidden" name="sort" th:value="${currentSort}" />
+
+<div class="app__container">
+    <div class="grid">
+        <div class="grid__row app__content">
+            <!-- Sidebar -->
+            <div class="grid__column-2">
+                <nav class="category">
+                    <h3 class="category__heading">
+                        <i class="category__heading-icon fa-solid fa-list"></i> Thể loại
+                    </h3>
+                    <ul class="category-list">
+                        <li class="category-item" th:each="item : ${theloais}">
+                            <a th:href="@{/(searchStr=${item.categoryName})}" th:text="${item.categoryName}" class="category-item__link"></a>
+                        </li>
+                    </ul>
+                </nav>
+                <nav class="category">
+                    <h3 class="category__heading">
+                        <i class="category__heading-icon fa-solid fa-list"></i> Tác giả
+                    </h3>
+                    <ul class="category-list">
+                        <li class="category-item" th:each="item : ${nhaxuatbans}">
+                            <a th:href="@{/(sort=${item.authorName})}" th:text="${item.authorName}" class="category-item__link"></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Main content -->
+            <div class="grid__column-10">
+                <div class="home-filter">
+                    <span class="home-filter__label">Sắp xếp theo</span>
+                    <a th:href="@{/(sort='new')}" class="home-filter__btn btn">Mới nhất</a>
+                    <a th:href="@{/(sort='selling')}" class="home-filter__btn btn">Còn hàng</a>
+
+                    <div class="select-input">
+                        <span class="select-input__label">Giá</span>
+                        <i class="fa-solid fa-caret-down"></i>
+                        <ul class="select-input__list">
+                            <li><a th:href="@{/(sort='asc')}" class="select-input__link">Giá: thấp đến cao</a></li>
+                            <li><a th:href="@{/(sort='desc')}" class="select-input__link">Giá: cao đến thấp</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="home-filter__page">
+                        <span class="home-filter__page-num">
+                            <span class="home-filter__page-current">Trang <span th:text="${currentPage}"></span></span> / <span th:text="${totalPage}"></span>
+                        </span>
+                        <div class="home-filter__page-control">
+                            <a th:if="${currentPage > 1}" th:href="@{/home(searchStr=${currentSearch}, sort=${currentSort}, pageIndex=${currentPage - 1})}" class="home-filter__page-btn">
+                                <i class="home-filter__page-icon fa-solid fa-caret-left"></i>
+                            </a>
+                            <a th:if="${currentPage <= 1}" href="#" class="home-filter__page-btn home-filter__page-btn--disabled">
+                                <i class="home-filter__page-icon fa-solid fa-caret-left"></i>
+                            </a>
+
+                            <a th:if="${currentPage < totalPage}" th:href="@{/home(searchStr=${currentSearch}, sort=${currentSort}, pageIndex=${currentPage + 1})}" class="home-filter__page-btn">
+                                <i class="home-filter__page-icon fa-solid fa-caret-right"></i>
+                            </a>
+                            <a th:if="${currentPage >= totalPage}" href="#" class="home-filter__page-btn home-filter__page-btn--disabled">
+                                <i class="home-filter__page-icon fa-solid fa-caret-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sách -->
+                <div id="sach-container">
+                    <div class="home-product">
+                        <div class="grid__row">
+                            <div class="grid__column-2-4" th:each="item : ${data}">
+                                <a class="home-product__item" th:href="@{/home/sach/(id=${item.idBook})}">
+                                    <div class="home-product__item-img"
+                                         th:style="'background-image: url(/book-images/' + ${item.bookImage} + ');'">
+                                    </div>
+                                    <h4 class="home-product__item-name" th:text="${item.bookName}"></h4>
+
+                                    <div class="home-product__item-price">
+                                    	<span></span>
+                                         <span class="home-product__item-price-current"
+                                              th:text="${item.price}"></span>
+                                    </div>
+									
+									<div class="home-product__item-action">
+                                        <span class="home-product__item-sold">0 đã bán</span>
+                                    </div>
+
+                                    <div class="home-product__item-origin">
+                                        <span class="home-product__item-brand" th:text="${item.category.categoryName}"></span>
+                                    </div>
+
+                                    <div class="home-product__favourite">
+                                        <i class="fa-solid fa-check"></i>
+                                        <span th:text="${item.quantity > 0 ? 'Còn hàng' : 'Cháy hàng'}"></span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <ul class="pagination home-product__pagination" th:if="${currentPage <= totalPage}">
+                        <li class="pagination-item" th:if="${currentPage != 1}">
+                            <a th:href="@{/home(sort=${currentSort}, pageIndex=1)}" class="pagination-item__link">
+                                <i class="pagination-item__icon fas fa-angle-left"></i>
+                            </a>
+                        </li>
+
+                        <li class="pagination-item" th:each="i : ${#numbers.sequence(currentPage, (currentPage + totalPage)/2)}">
+                            <a th:href="@{/home(sort=${currentSort}, pageIndex=${i})}" class="pagination-item__link" th:text="${i}"></a>
+                        </li>
+
+                        <li class="pagination-item" th:if="${totalPage > 5}">
+                            <a href="#" class="pagination-item__link">...</a>
+                        </li>
+
+                        <li class="pagination-item">
+                            <a th:href="@{/home(sort=${currentSort}, pageIndex=${totalPage})}" class="pagination-item__link" th:text="${totalPage}"></a>
+                        </li>
+
+                        <li class="pagination-item" th:if="${currentPage != totalPage}">
+                            <a th:href="@{/home(sort=${currentSort}, pageIndex=${totalPage})}" class="pagination-item__link">
+                                <i class="pagination-item__icon fas fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</main>
+
+<div th:replace="fragments_home/footer :: footer"></div>
+<div th:replace="fragments/script :: scripts"></div>
+<!-- AJAX Pagination -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).on('click', '.pagination-item a', function (e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        $.ajax({
+            url: url,
+            method: 'GET',
+            success: function (data) {
+                $('#sach-container').html($(data).find('#sach-container').html());
+            },
+            error: function (xhr, status, error) {
+                console.error("AJAX Error: " + status + ": " + error);
+            }
+        });
+    });
+</script>
+</body>
+</html>
+

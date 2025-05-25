@@ -22,20 +22,20 @@
 </div>
 <div class="row detail">
 	<div class=col-md-6>
+		
 		<div id="sach-container">
-                    <table class="table table-hover table-bordered">
+                    <table class="table table-hover table-bordered bg-white">
                         <thead>
                             <tr>
                                 <th>STT</th>
                                 <th style="max-width:332px">Tên sách</th>
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each="item,iterStat  : ${books}">
                                 <td th:text="${iterStat.index + 1}">1</td>
-                                <td th:text="${item.bookName}" style="max-width:332px">Tên</td>
-                                <td th:text="${''}">0</td>
+                                <td style="max-width:332px" th:text="${item.bookName}" ></td>
+                                <td><a th:href="@{/admin/sach/detail/{id}(id=${item.idBook})}"class="btn btn-primary btn-sm user-btn justify-center" title="Xem thông tin">Xem</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -48,7 +48,7 @@
         </div>
         <div class="detail__item">
             <label class="control-label">Tiểu sử: </label>
-            <div  style="min-height: 300px; min-width: 90%; border: 0.5px solid black; border-radius: 10px ;background: white;">
+            <div  style="min-height: 300px; min-width: 90%; border-radius: 10px ;background: white; padding: 20px;">
             <span th:utext="${author.bio}"></span> <!-- utext dùng để render HTML -->
             </div>
             

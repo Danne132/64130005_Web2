@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<header class="header" th:fragment="navheader">
+    <div class="grid">
+        <nav class="navbar">
+            <ul class="navbar__list">
+                <li class="navbar__item">
+                    <span class="navbar__title--no-pointer" style="color: #044785">Kết nối</span>
+                    <a href="https://www.facebook.com/hoangduyan2004/" class="navbar__icon-link" style="color: #044785">
+                        <i class="navbar__icon fa-brands fa-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/vibefree.vn/" class="navbar__icon-link" style="color: #044785">
+                        <i class="navbar__icon fa-brands fa-instagram"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar__list">
+                <li class="navbar__item">
+                    <a th:href="@{/lienhe}" class="navbar__item-link">
+                        <i class="navbar__icon fa-solid fa-circle-question"></i>Trợ giúp
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Header Search -->
+        <div class="header-search">
+            <div class="header-search__logo">
+                <a th:href="@{/}">
+                    <img th:src="@{/Images/logo_pn.png}" class="header-search__logo-img" />
+                </a>
+            </div>
+
+            <form th:action="@{/}" method="get" class="header-search__box-search">
+                <div class="header-search__box-search-wrap">
+                    <input type="text" name="searchStr" class="header-search__box-search-input" placeholder="Tìm kiếm sản phẩm" />
+                </div>
+                <button class="header-search__box-search-btn" type="submit">
+                    <i class="header-search__box-search-btn-icon fa-solid fa-magnifying-glass"></i>
+                </button>	
+            </form>
+        </div>
+    </div>
+
+    <div style="background-color: #04478f; width: 100%; height: 10px; margin-top: 10px;"></div>
+</header>
+
+
+</body>
+</html>

@@ -30,8 +30,7 @@ public class BookService {
 		return bookRepository.countByQuantityEquals0();
 	}
 	
-	public Page<Book> searchBooks(String searchKeyword, int page, String sort) {
-        int pageSize = 5;
+	public Page<Book> searchBooks(String searchKeyword, int page, String sort, int pageSize) {
         Pageable pageable = PageRequest.of(page - 1, pageSize, Sort.by("bookName").ascending());
 
         if (searchKeyword != null && !searchKeyword.isEmpty()) {
@@ -49,6 +48,34 @@ public class BookService {
             }
         }
     }
+	
+	public Page<Book> searchBookFromHome(String search, String sort, int page, int size) {
+		Pageable pageable = PageRequest.of(page - 1, 12, Sort.by("bookName").ascending());
+		if (search != null && !search.isEmpty()) {
+            return bookRepository.searchByNameCategoryOrAuthor(search.toLowerCase(), pageable);
+        } else {
+		    switch (sort!=null ? sort : "") {
+		        case "asc":
+		            pageable = PageRequest.of(page - 1, 12, Sort.by("price").ascending());
+		            break;
+		        case "desc":
+		            pageable = PageRequest.of(page - 1, 12, Sort.by("price").descending());
+		            break;
+		        case "selling":
+		            pageable = PageRequest.of(page - 1, 12, Sort.by("quantity").descending());
+		            break;
+		        case "new":
+		        default:
+		            pageable = PageRequest.of(page - 1, 12, Sort.by("lastModified").descending());
+		            break;
+	    	}
+        }
+		return bookRepository.findAll(pageable);
+	}
+	
+	public void deleteById(Integer id) {
+	    bookRepository.deleteById(id);
+	}
 	
 	public Book SaveBook(Book book) {
 		return bookRepository.save(book);

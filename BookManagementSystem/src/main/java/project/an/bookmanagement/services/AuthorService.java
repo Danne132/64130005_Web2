@@ -38,4 +38,8 @@ public class AuthorService {
 	public Optional<Author> getAuthorById(Integer Id){
 		return authorRepository.findById(Id);
 	}
+	
+	public void saveAuthor(Author author) {
+		authorRepository.save(author);
+	}
 }
