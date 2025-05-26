@@ -39,6 +39,10 @@ public class AuthorService {
 		return authorRepository.findById(Id);
 	}
 	
+	public Author findByName(String name) {
+		return authorRepository.findby
+	}
+	
 	public void saveAuthor(Author author) {
 		authorRepository.save(author);
 	}

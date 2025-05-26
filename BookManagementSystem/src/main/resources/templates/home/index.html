@@ -104,9 +104,13 @@
                                         <span class="home-product__item-brand" th:text="${item.category.categoryName}"></span>
                                     </div>
 
-                                    <div class="home-product__favourite">
+                                    <div th:if="${item.quantity}>0" class="home-product__favourite">
                                         <i class="fa-solid fa-check"></i>
-                                        <span th:text="${item.quantity > 0 ? 'Còn hàng' : 'Cháy hàng'}"></span>
+                                        <span>Còn hàng</span>
+                                    </div>
+                                    <div th:if="${item.quantity}<=0"class="home-product__favourite" style="background:red">
+                                    	<i class="fa-solid fa-close"></i>
+                                    	<span>Cháy hàng</span>
                                     </div>
                                 </a>
                             </div>

@@ -53,10 +53,8 @@
                         <span class="detail__info-label">Tác giả: </span>
                         <span th:each="author, iterStat : ${authors}">
                             <span class="badge badge-info mx-1 author-badge">
-                            	<a th:text="${author.authorName}" th:href="@{/(searchAuthor=${author.authorName})}" >
-                
-                            	</a>
-                            </span>
+                            	<a th:text="${author.authorName}" th:href="@{/(searchAuthor=${author.authorName})}" ></a>
+                           	</span>
                             <span th:if="${!iterStat.last}">, </span>
                         </span>
                     </div>
@@ -76,7 +74,8 @@
             </div>
         </div>
     </div>
-</div>
+<div th:replace="fragments_home/footer :: footer"></div>
+<div th:replace="fragments/script :: scripts"></div>
 <style>
     .detail__picture {
         width: 100%;
@@ -146,7 +145,21 @@
         color: #6f6c6c;
         margin: 15px 0;
     }
+    
+    .detail__info-brand a{
+    	text-decoration: none;
+    	color: black;
+    }
+    
+    .detail__info-brand a:hover{
+    	background-color: #17a2b8;
+    	color: white;
+    	padding: 3px;
+    	border-radius: 0.25rem;
+    }
 </style>
+
+
 </main>
 </body>
 </html>
