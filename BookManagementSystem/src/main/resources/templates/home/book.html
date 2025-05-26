@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${book.bookName}"></title>
+    <th:block th:replace="fragments_home/header :: navheader"></th:block>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" th:href="@{/Assets/Css/base.css}" />
+    <link rel="stylesheet" th:href="@{/Assets/Css/main.css}" />
+    <link rel="stylesheet" th:href="@{/Assets/Css/responsive.css}" />
+</head>
+<body class="app sidebar-mini rtl">
+
+<main class="app-content">
+<div class="app__container">
+    <div class="grid app__content" style="padding-top:0;">
+        <div class="grid__row" style="padding:40px 0;">
+            <div class="grid__column-6 detail__picture-layout">
+                <img th:src="@{'/book-images/' + ${book.bookImage}}" alt="" class="detail__picture">
+            </div>
+
+            <div class="grid__column-8 detail">
+                <h2 class="detail__name" th:text="${book.bookName}"></h2>
+
+                <div class="detail__quanti">
+                    <span class="detail__ProductSold">| Còn lại: <span th:text="${book.quantity}"></span></span>
+                </div>
+
+  <!--               <div class="detail__price" th:if="${book.discount == 0}">
+                    <span class="detail__unit-price" th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA')} + ' đ'"></span>
+                </div>
+                <div class="detail__price" th:if="${book.discount > 0}">
+                    <span class="detail__price-old" th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA')} + ' đ'"></span>
+                    <span class="detail__unit-price"
+                          th:text="${#numbers.formatDecimal(book.price - (book.price * book.discount / 100), 0, 'COMMA')} + ' đ'"></span>
+                    <span class="detail__product-sale" th:text="${book.discount + '% Giảm'}"></span>
+                </div> -->
+
+                <div class="detail__info">
+                    <div class="detail__info-brand">
+                        <span class="detail__info-label">Thể loại: </span>
+                        <span th:text="${book.category.categoryName}"></span>
+                    </div>
+
+                    <div class="detail__info-quanti">
+                        <span class="detail__info-label">Tình trạng: </span>
+                        <span th:if="${book.quantity > 0}">Còn hàng</span>
+                        <span th:unless="${book.quantity > 0}" style="text-decoration: line-through red">Hết hàng</span>
+                    </div>
+
+                    <div class="detail__info-brand">
+                        <span class="detail__info-label">Tác giả: </span>
+                        <span th:each="author, iterStat : ${authors}">
+                            <span class="badge badge-info mx-1 author-badge">
+                            	<a th:text="${author.authorName}" th:href="@{/(searchAuthor=${author.authorName})}" >
+                
+                            	</a>
+                            </span>
+                            <span th:if="${!iterStat.last}">, </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="detail__desc">
+                    <h3>Mô tả</h3>
+                    <p th:utext="${book.description}"></p>
+                </div>
+
+                    <a th:unless="${book.quantity < 0}"
+                       th:href="@{/}"
+                       class="detail__operation-addCart btn btn-order">
+                        Quay về trang chủ
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .detail__picture {
+        width: 100%;
+        height: 90%;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .detail__picture-layout{
+        width: fit-content;
+        height: 500px;
+        border: 2px solid var(--main-color);
+        display: flex;
+        align-items: center;
+        background-color: white;
+    }
+
+    .detail {
+        font-size: 1.6rem;
+        position: relative;
+    }
+
+    .detail__price {
+        height: 60px;
+        display: flex;
+        align-items: center;
+        background-color: #F5F5F5;
+    }
+
+    .detail__price-old {
+        color: #878787;
+        margin-right: 10px;
+        text-decoration: line-through;
+    }
+
+    .detail__unit-price {
+        margin-right: 10px;
+        color: #D0011B;
+        font-size: 2.6rem;
+    }
+
+    .detail__product-sale {
+        text-transform: uppercase;
+        background-color: #D0011B;
+        padding: 5px;
+        color: var(--white-color);
+    }
+
+    .detail__info {
+        margin: 10px 0;
+    }
+
+    .detail__info-label {
+        display: inline-block;
+        width: 100px;
+        height: 30px;
+        color: #878787;
+    }
+
+
+    .detail__operation-buynow {
+        background-color: var(--main-color);
+        color: var(--white-color);
+    }
+
+    .detail__ul li {
+        color: #6f6c6c;
+        margin: 15px 0;
+    }
+</style>
+</main>
+</body>
+</html>

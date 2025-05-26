@@ -10,13 +10,22 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import project.an.bookmanagement.models.Author;
 import project.an.bookmanagement.models.Book;
+import project.an.bookmanagement.repositories.AuthorRepository;
+import project.an.bookmanagement.repositories.BookAuthorRepository;
 import project.an.bookmanagement.repositories.BookRepository;
 
 @Service
 public class BookService {
 	@Autowired
 	private BookRepository bookRepository;
+	
+	@Autowired
+	private BookAuthorRepository bookAuthorRepository;
+	
+	@Autowired
+	private AuthorRepository authorRepository;
 	
 	public long countBookInStore() {
 		return bookRepository.count();
@@ -29,6 +38,7 @@ public class BookService {
 	public long CountBookOutStock() {
 		return bookRepository.countByQuantityEquals0();
 	}
+	
 	
 	public Page<Book> searchBooks(String searchKeyword, int page, String sort, int pageSize) {
         Pageable pageable = PageRequest.of(page - 1, pageSize, Sort.by("bookName").ascending());
@@ -49,11 +59,17 @@ public class BookService {
         }
     }
 	
-	public Page<Book> searchBookFromHome(String search, String sort, int page, int size) {
-		Pageable pageable = PageRequest.of(page - 1, 12, Sort.by("bookName").ascending());
+	public Page<Book> searchBookFromHome(String search, String sort, int page, int size, String searchAuthor) {
+		Pageable pageable;
 		if (search != null && !search.isEmpty()) {
-            return bookRepository.searchByNameCategoryOrAuthor(search.toLowerCase(), pageable);
-        } else {
+			pageable = PageRequest.of(page - 1, 12, Sort.by("bookName").ascending());
+            return bookRepository.searchByNameOrCategory(search.toLowerCase(), pageable);
+        } 
+		if (searchAuthor != null && !searchAuthor.isEmpty()) {
+			pageable = PageRequest.of(page - 1, 12, Sort.by("book.bookName").ascending());
+			return bookAuthorRepository.searchByAuthorName(searchAuthor, pageable);
+		}
+		else {
 		    switch (sort!=null ? sort : "") {
 		        case "asc":
 		            pageable = PageRequest.of(page - 1, 12, Sort.by("price").ascending());

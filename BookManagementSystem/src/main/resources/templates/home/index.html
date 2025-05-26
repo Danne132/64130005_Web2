@@ -35,7 +35,7 @@
                     </h3>
                     <ul class="category-list">
                         <li class="category-item" th:each="item : ${nhaxuatbans}">
-                            <a th:href="@{/(sort=${item.authorName})}" th:text="${item.authorName}" class="category-item__link"></a>
+                            <a th:href="@{/(searchAuthor=${item.authorName})}" th:text="${item.authorName}" class="category-item__link"></a>
                         </li>
                     </ul>
                 </nav>
@@ -47,7 +47,7 @@
                     <span class="home-filter__label">Sắp xếp theo</span>
                     <a th:href="@{/(sort='new')}" class="home-filter__btn btn">Mới nhất</a>
                     <a th:href="@{/(sort='selling')}" class="home-filter__btn btn">Còn hàng</a>
-
+					<a th:href="@{/}" class="home-filter__btn btn">Mặc định</a>
                     <div class="select-input">
                         <span class="select-input__label">Giá</span>
                         <i class="fa-solid fa-caret-down"></i>
@@ -62,14 +62,14 @@
                             <span class="home-filter__page-current">Trang <span th:text="${currentPage}"></span></span> / <span th:text="${totalPage}"></span>
                         </span>
                         <div class="home-filter__page-control">
-                            <a th:if="${currentPage > 1}" th:href="@{/home(searchStr=${currentSearch}, sort=${currentSort}, pageIndex=${currentPage - 1})}" class="home-filter__page-btn">
+                            <a th:if="${currentPage > 1}" th:href="@{/(searchStr=${currentSearch}, sort=${currentSort}, pageIndex=${currentPage - 1})}" class="home-filter__page-btn">
                                 <i class="home-filter__page-icon fa-solid fa-caret-left"></i>
                             </a>
                             <a th:if="${currentPage <= 1}" href="#" class="home-filter__page-btn home-filter__page-btn--disabled">
                                 <i class="home-filter__page-icon fa-solid fa-caret-left"></i>
                             </a>
 
-                            <a th:if="${currentPage < totalPage}" th:href="@{/home(searchStr=${currentSearch}, sort=${currentSort}, pageIndex=${currentPage + 1})}" class="home-filter__page-btn">
+                            <a th:if="${currentPage < totalPage}" th:href="@{/(searchStr=${currentSearch}, sort=${currentSort}, pageIndex=${currentPage + 1})}" class="home-filter__page-btn">
                                 <i class="home-filter__page-icon fa-solid fa-caret-right"></i>
                             </a>
                             <a th:if="${currentPage >= totalPage}" href="#" class="home-filter__page-btn home-filter__page-btn--disabled">
@@ -84,7 +84,7 @@
                     <div class="home-product">
                         <div class="grid__row">
                             <div class="grid__column-2-4" th:each="item : ${data}">
-                                <a class="home-product__item" th:href="@{/home/sach/(id=${item.idBook})}">
+                                <a class="home-product__item" th:href="@{/sach/{id}(id=${item.idBook})}">
                                     <div class="home-product__item-img"
                                          th:style="'background-image: url(/book-images/' + ${item.bookImage} + ');'">
                                     </div>
@@ -97,7 +97,7 @@
                                     </div>
 									
 									<div class="home-product__item-action">
-                                        <span class="home-product__item-sold">0 đã bán</span>
+                                        <span class="home-product__item-sold" th:text="'Còn lại: ' + ${item.quantity}"></span>
                                     </div>
 
                                     <div class="home-product__item-origin">
@@ -116,13 +116,13 @@
                     <!-- Pagination -->
                     <ul class="pagination home-product__pagination" th:if="${currentPage <= totalPage}">
                         <li class="pagination-item" th:if="${currentPage != 1}">
-                            <a th:href="@{/home(sort=${currentSort}, pageIndex=1)}" class="pagination-item__link">
+                            <a th:href="@{/(sort=${currentSort}, pageIndex=1)}" class="pagination-item__link">
                                 <i class="pagination-item__icon fas fa-angle-left"></i>
                             </a>
                         </li>
 
                         <li class="pagination-item" th:each="i : ${#numbers.sequence(currentPage, (currentPage + totalPage)/2)}">
-                            <a th:href="@{/home(sort=${currentSort}, pageIndex=${i})}" class="pagination-item__link" th:text="${i}"></a>
+                            <a th:href="@{/(sort=${currentSort}, pageIndex=${i})}" class="pagination-item__link" th:text="${i}"></a>
                         </li>
 
                         <li class="pagination-item" th:if="${totalPage > 5}">
@@ -130,11 +130,11 @@
                         </li>
 
                         <li class="pagination-item">
-                            <a th:href="@{/home(sort=${currentSort}, pageIndex=${totalPage})}" class="pagination-item__link" th:text="${totalPage}"></a>
+                            <a th:href="@{/(sort=${currentSort}, pageIndex=${totalPage})}" class="pagination-item__link" th:text="${totalPage}"></a>
                         </li>
 
                         <li class="pagination-item" th:if="${currentPage != totalPage}">
-                            <a th:href="@{/home(sort=${currentSort}, pageIndex=${totalPage})}" class="pagination-item__link">
+                            <a th:href="@{/(sort=${currentSort}, pageIndex=${totalPage})}" class="pagination-item__link">
                                 <i class="pagination-item__icon fas fa-angle-right"></i>
                             </a>
                         </li>

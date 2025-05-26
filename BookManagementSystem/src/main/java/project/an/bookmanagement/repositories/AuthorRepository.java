@@ -15,4 +15,5 @@ public interface AuthorRepository extends JpaRepository<Author, Integer>{
 	@Query("SELECT a FROM Author a WHERE " +
 	           "LOWER(a.authorName) LIKE LOWER(CONCAT('%', :keyword, '%'))")
 	List<Author> searchByAuthorName(@Param("keyword") String keyword);
+	Author findByAuthorName(String name);
 }
