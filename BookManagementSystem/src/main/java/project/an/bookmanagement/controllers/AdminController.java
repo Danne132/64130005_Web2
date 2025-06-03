@@ -53,10 +53,14 @@ public class AdminController {
 		long authorCount = authorService.countAuthor();
 		long lowerThan50 = bookService.CountBookFewer();
 		long outStock = bookService.CountBookOutStock();
+		List<Integer> countCategory = bookService.countBookByCategory();
+		List<Catergory> catergories = categoryService.getAllCategory();
 		model.addAttribute("bookCount", bookCount);
 		model.addAttribute("authorCount", authorCount);
 		model.addAttribute("low", lowerThan50);
 		model.addAttribute("out", outStock);
+		model.addAttribute("countCat", countCategory);
+		model.addAttribute("labelCat", catergories);
 		return "dashboard";
 	}
 	

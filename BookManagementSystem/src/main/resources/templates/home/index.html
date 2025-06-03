@@ -12,7 +12,7 @@
 <body class="app sidebar-mini rtl">
 
 <main class="app-content">
-<input type="hidden" name="sort" th:value="${currentSort}" />
+<input type="hidden" name="sort" th:value="${currentSort}"/>
 
 <div class="app__container">
     <div class="grid">
@@ -47,7 +47,6 @@
                     <span class="home-filter__label">Sắp xếp theo</span>
                     <a th:href="@{/(sort='new')}" class="home-filter__btn btn">Mới nhất</a>
                     <a th:href="@{/(sort='selling')}" class="home-filter__btn btn">Còn hàng</a>
-					<a th:href="@{/}" class="home-filter__btn btn">Mặc định</a>
                     <div class="select-input">
                         <span class="select-input__label">Giá</span>
                         <i class="fa-solid fa-caret-down"></i>

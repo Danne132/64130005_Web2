@@ -59,6 +59,18 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- Selenium -->
+		<dependency>
+	    <groupId>org.seleniumhq.selenium</groupId>
+		    <artifactId>selenium-java</artifactId>
+		    <version>4.28.1</version>
+		</dependency>	
+	    <!-- Applitools -->
+	    <dependency>
+		    <groupId>com.applitools</groupId>
+		    <artifactId>eyes-selenium-java5</artifactId>
+		    <version>5.80.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

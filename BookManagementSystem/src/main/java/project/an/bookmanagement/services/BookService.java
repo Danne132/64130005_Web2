@@ -1,6 +1,8 @@
 package project.an.bookmanagement.services;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale.Category;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +14,11 @@ import org.springframework.stereotype.Service;
 
 import project.an.bookmanagement.models.Author;
 import project.an.bookmanagement.models.Book;
+import project.an.bookmanagement.models.Catergory;
 import project.an.bookmanagement.repositories.AuthorRepository;
 import project.an.bookmanagement.repositories.BookAuthorRepository;
 import project.an.bookmanagement.repositories.BookRepository;
+import project.an.bookmanagement.repositories.CategoryRepository;
 
 @Service
 public class BookService {
@@ -26,6 +30,9 @@ public class BookService {
 	
 	@Autowired
 	private AuthorRepository authorRepository;
+	
+	@Autowired
+	private CategoryRepository categoryRepository;
 	
 	public long countBookInStore() {
 		return bookRepository.count();
@@ -39,6 +46,14 @@ public class BookService {
 		return bookRepository.countByQuantityEquals0();
 	}
 	
+	public List<Integer> countBookByCategory(){
+		List<Catergory> categories = categoryRepository.findAll();
+		List<Integer> countIntegers = new ArrayList<Integer>();
+		for (Catergory catergory : categories) {
+			countIntegers.add(bookRepository.countByCategory(catergory));
+		}
+		return countIntegers;
+	}
 	
 	public Page<Book> searchBooks(String searchKeyword, int page, String sort, int pageSize) {
         Pageable pageable = PageRequest.of(page - 1, pageSize, Sort.by("bookName").ascending());

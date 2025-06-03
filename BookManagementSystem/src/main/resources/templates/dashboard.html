@@ -5,8 +5,10 @@
 	<link rel="stylesheet" th:href="@{/Assets/Admin/css/main.css}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <title>Dashboard</title>
     <th:block th:replace="fragments/header :: header"></th:block>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="app sidebar-mini rtl">
 
@@ -62,86 +64,62 @@
         </div>
     </div>
 
-    <div class="col-md-12">
-                <div class="tile">
-                    <h3 class="tile-title">Sách mới thêm vào</h3>
-                    <div>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th width="100">Mã sách</th>
-                                    <th>Tên sách</th>
-                                    <th>Giá</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:each="item : ${dsDonHang}" th:if="${item.maTrangThai == 'Chưa giao hàng' or item.maTrangThai == 'Đang giao hàng'}">
-                                    <td th:text="${item.maDH}"></td>
-                                    <td th:text="${item.khachHang != null ? item.khachHang.fullName() : 'null'}"></td>
-                                    <td th:text="${#numbers.formatDecimal(item.tongTien, 0, 'COMMA', 0, 'POINT')} + ' ₫'"></td>
-                                    <td>
-                                        <span class="badge" 
-                                              th:classappend="${item.trangThaiDH.trangThai == 'Chưa giao hàng'} ? ' bg-info' : 
-                                                             (${item.trangThaiDH.trangThai == 'Đang giao hàng'} ? ' bg-warning' : '')"
-                                              th:text="${item.trangThaiDH.trangThai}">
-                                        </span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-</div>
+    <div class="col-md-12 col-lg-12">
+    	<div class="row">
+	    	<div class="chart-container col-md-5 col-lg-5">
+		        <canvas id="categoryChart"></canvas>
+		    </div> 
+    	</div>      
+	</div>
 
-<script th:src="@{/Scripts/chart.min.js}"></script>
+<!-- <script th:src="@{/Scripts/chart.min.js}"></script> -->
+
 <script th:inline="javascript">
-    var months = ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"];
-
-    var ctxLine = document.getElementById('lineChartDemo').getContext('2d');
-    new Chart(ctxLine, {
-        type: 'line',
-        data: {
-            labels: months,
-            datasets: [{
-                label: 'Số lượng sản phẩm',
-                data: productCounts.map(item => item.soLuong),
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false
+        /*<![CDATA[*/
+        const labels = /*[[${labelCat}]]*/ [];
+        const data = /*[[${countCat}]]*/ [];
+        function getRandomColor() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            return `rgba(${r}, ${g}, ${b}, 0.7)`;
         }
-    });
-
-    var ctxBar = document.getElementById('barChartDemo').getContext('2d');
-    new Chart(ctxBar, {
-        type: 'bar',
-        data: {
-            labels: months,
-            datasets: [{
-                label: 'Doanh thu (VNĐ)',
-                data: revenues.map(item => item.tongTien),
-                backgroundColor: 'rgba(255, 159, 64, 0.2)',
-                borderColor: 'rgba(255, 159, 64, 1)',
-                borderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false
-        }
-    });
-</script>
+        const backgroundColors = labels.map(() => getRandomColor());
+        const ctx = document.getElementById('categoryChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Số sách',
+                    data: data,
+                    backgroundColor: backgroundColors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Thống kê số lượng sách mỗi thể loại'
+                    }
+                }
+            }
+        });
+        /*]]>*/
+    </script>
 
 <style>
     .tile {
         height: 400px;
         overflow: auto;
+    }
+    .chart-container {
+        width: 300px;
     }
 </style>
 

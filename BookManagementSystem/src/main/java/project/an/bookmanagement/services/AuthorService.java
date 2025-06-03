@@ -40,7 +40,7 @@ public class AuthorService {
 	}
 	
 	public Author findByName(String name) {
-		return authorRepository.findby
+		return authorRepository.findByAuthorName(name);
 	}
 	
 	public void saveAuthor(Author author) {
