@@ -43,7 +43,10 @@ public class HomeController {
 						   ModelMap model) {
 		int pageSize = 12;
 		Page<Book> sachList = bookService.searchBookFromHome(search, sort,page, pageSize, searchAuthor);
-
+		if(searchAuthor != null) {
+			Author author = authorService.findByName(searchAuthor);
+			model.addAttribute("author",author);
+		}
         model.addAttribute("data", sachList.getContent());
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPage", sachList.getTotalPages());

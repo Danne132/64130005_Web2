@@ -1,7 +1,7 @@
 package project.an.bookmanagement.models;
 
-import java.sql.Date;
 import java.text.NumberFormat;
+import java.util.Date;
 import java.util.Locale;
 
 import jakarta.persistence.Column;
@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 
 @Entity
@@ -129,5 +130,8 @@ public class Book {
 		this.description = description;
 	}	
 	
-	
+    @PreUpdate
+    protected void onUpdate() {
+        lastModified = new Date();
+    }
 }

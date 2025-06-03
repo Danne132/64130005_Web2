@@ -16,4 +16,13 @@ public interface AuthorRepository extends JpaRepository<Author, Integer>{
 	           "LOWER(a.authorName) LIKE LOWER(CONCAT('%', :keyword, '%'))")
 	List<Author> searchByAuthorName(@Param("keyword") String keyword);
 	Author findByAuthorName(String name);
+	@Query(value = """
+		    SELECT a.author_name, COUNT(ba.id_book) AS book_count
+		    FROM author a
+		    JOIN book_author ba ON a.author_id = ba.id_book
+		    GROUP BY a.author_name
+		    ORDER BY book_count DESC
+		    LIMIT 5
+		""", nativeQuery = true)
+	List<Object[]> findTop5AuthorsByBookCount();
 }

@@ -2,6 +2,7 @@ package project.an.bookmanagement.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -45,5 +46,16 @@ public class AuthorService {
 	
 	public void saveAuthor(Author author) {
 		authorRepository.save(author);
+	}
+	
+	public List<Author> findTop5AuthorsByBookCount() {
+		List<Object[]> results = authorRepository.findTop5AuthorsByBookCount();
+		List<Author> topAuthors = results.stream().map(row -> {
+		    Author a = new Author();
+		    a.setAuthorName((String) row[0]);
+		    a.setCountBook(((Number) row[1]).longValue());
+		    return a;
+		}).collect(Collectors.toList());
+		return topAuthors;
 	}
 }

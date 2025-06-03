@@ -3,6 +3,8 @@ package project.an.bookmanagement.controllers;
 import java.awt.print.Pageable;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -55,12 +57,21 @@ public class AdminController {
 		long outStock = bookService.CountBookOutStock();
 		List<Integer> countCategory = bookService.countBookByCategory();
 		List<Catergory> catergories = categoryService.getAllCategory();
+		List<Author> authors = authorService.findTop5AuthorsByBookCount();
+		List<String> categoryNames = catergories.stream()
+			.map(Catergory::getCategoryName) .collect(Collectors.toList());
+		List<String> authorName = authors.stream()
+				.map(Author::getAuthorName) .collect(Collectors.toList());
+		List<Long> countAuthor = authors.stream()
+				.map(Author::getCountBook) .collect(Collectors.toList());
 		model.addAttribute("bookCount", bookCount);
 		model.addAttribute("authorCount", authorCount);
 		model.addAttribute("low", lowerThan50);
 		model.addAttribute("out", outStock);
 		model.addAttribute("countCat", countCategory);
-		model.addAttribute("labelCat", catergories);
+		model.addAttribute("labelCat", categoryNames);
+		model.addAttribute("countAuthors",countAuthor);
+		model.addAttribute("labelAuthors",authorName);
 		return "dashboard";
 	}
 	
@@ -150,11 +161,34 @@ public class AdminController {
 	@PostMapping("/sach/edit")
 	public String saveBook(
 	        @ModelAttribute Book book,
-	        @RequestParam("authorIds") List<Integer> authorIds) {
+	        @RequestParam("authorIds") List<Integer> authorIds,
+	        @RequestParam("file") MultipartFile file) {
+		if (!file.isEmpty()) {
+	        try {
+	            String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
+	            String uploadDir = "D:/book-uploads/"; // ví dụ thư mục lưu
+	            File uploadPath = new File(uploadDir);
+	            if (!uploadPath.exists()) {
+	                uploadPath.mkdirs(); // tạo thư mục nếu chưa có
+	            }
 
-//	    bookService.SaveBook(book);
+	            File savedFile = new File(uploadDir + filename);
+	            file.transferTo(savedFile);
+
+	            // 2. Gán tên file cho book (để lưu vào DB)
+	            book.setBookImage(filename); // Cột này phải có trong Book model + DB
+
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            // xử lý lỗi hoặc báo lại giao diện
+	        }
+	    }
+		else {
+			Book book2 = bookService.findBookById(book.getIdBook()).get();
+			book.setBookImage(book2.getBookImage());
+		}
+	    bookService.SaveBook(book);
 	    bookAuthorService.updateAuthorsForBook(book, authorIds);
-
 	    return "redirect:/admin/sach";
 	}
 	

@@ -77,7 +77,10 @@
                         </div>
                     </div>
                 </div>
-
+				<div th:if="${author != null}">
+					<h3 style="font-size:2.5rem">Tác giả: <span th:text="${author.authorName}"></span></h3>
+					<div th:utext="${author.bio}" style="font-size: 1.5rem"></div>
+				</div>
                 <!-- Sách -->
                 <div id="sach-container">
                     <div class="home-product">

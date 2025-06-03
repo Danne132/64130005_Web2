@@ -68,6 +68,9 @@
     	<div class="row">
 	    	<div class="chart-container col-md-5 col-lg-5">
 		        <canvas id="categoryChart"></canvas>
+		    </div>
+		    <div class="chart-container col-md-5 col-lg-5">
+		    	<canvas id="barChart" height="300px"></canvas>
 		    </div> 
     	</div>      
 	</div>
@@ -111,6 +114,55 @@
             }
         });
         /*]]>*/
+    </script>
+    <script th:inline="javascript">
+    /*<![CDATA[*/
+        const Barlabels = /*[[${labelAuthors}]]*/ [];
+        const Bardata = /*[[${countAuthors}]]*/ [];
+
+        const Barctx = document.getElementById('barChart').getContext('2d');
+        new Chart(Barctx, {
+            type: 'bar',
+            data: {
+                labels: Barlabels,
+                datasets: [{
+                    label: 'Số lượng sách',
+                    data: Bardata,
+                    backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Số lượng'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Tác giả'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Top 3 tác giả viết nhiều sách nhất'
+                    }
+                }
+            }
+        });
+    /*]]>*/
     </script>
 
 <style>
