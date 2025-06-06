@@ -88,7 +88,7 @@
                             <div class="grid__column-2-4" th:each="item : ${data}">
                                 <a class="home-product__item" th:href="@{/sach/{id}(id=${item.idBook})}">
                                     <div class="home-product__item-img"
-                                         th:style="'background-image: url(/book-images/' + ${item.bookImage} + ');'">
+                                         th:style="'background-image: url(/uploads/' + ${item.bookImage} + ');'">
                                     </div>
                                     <h4 class="home-product__item-name" th:text="${item.bookName}"></h4>
 

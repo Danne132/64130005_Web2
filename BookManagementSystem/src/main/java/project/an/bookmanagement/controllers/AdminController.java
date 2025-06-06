@@ -13,6 +13,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import jakarta.servlet.ServletContext;
 import project.an.bookmanagement.models.Author;
 import project.an.bookmanagement.models.Book;
 import project.an.bookmanagement.models.Catergory;
@@ -48,6 +50,12 @@ public class AdminController {
 	
 	@Autowired
 	private BookAuthorService bookAuthorService;
+	
+	@Value("${upload.dir}")
+    private String uploadDir;
+	
+	@Autowired
+	private ServletContext servletContext;
 	
 	@GetMapping("/")
 	public String getDashBoard(ModelMap model) {
@@ -113,36 +121,35 @@ public class AdminController {
 	}
 	
 	@PostMapping("/sach/create")
-	public String createBook(@ModelAttribute Book book,
-							 @RequestParam("selectedAuthorIds") List<Integer> authorIds,
-							 @RequestParam("file") MultipartFile file) {
-		System.out.println(file);
-		if (!file.isEmpty()) {
-	        try {
-	            String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
-	            String uploadDir = "D:/book-uploads/"; // ví dụ thư mục lưu
-	            File uploadPath = new File(uploadDir);
-	            if (!uploadPath.exists()) {
-	                uploadPath.mkdirs(); // tạo thư mục nếu chưa có
-	            }
+    public String createBook(@ModelAttribute Book book,
+                             @RequestParam("selectedAuthorIds") List<Integer> authorIds,
+                             @RequestParam("file") MultipartFile file) {
 
-	            File savedFile = new File(uploadDir + filename);
-	            file.transferTo(savedFile);
+        if (!file.isEmpty()) {
+            try {
+                String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
+                String uploadPath = servletContext.getRealPath("/uploads"); // trỏ đến webapp/uploads
+                File uploadDir = new File(uploadPath);
+                if (!uploadDir.exists()) {
+                	uploadDir.mkdirs();
+                }
 
-	            // 2. Gán tên file cho book (để lưu vào DB)
-	            book.setBookImage(filename); // Cột này phải có trong Book model + DB
+                // Lưu file
+                File savedFile = new File(uploadPath, filename);
+                file.transferTo(savedFile);
 
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	            // xử lý lỗi hoặc báo lại giao diện
-	        }
-	    }
-		
-		bookService.SaveBook(book);
+                // Lưu đường dẫn ảnh tương đối
+                book.setBookImage(filename);
 
-		bookAuthorService.saveBookAuthors(book, authorIds);
-		return "redirect:/admin/sach";
-	}
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        bookService.SaveBook(book);
+        bookAuthorService.saveBookAuthors(book, authorIds);
+        return "redirect:/admin/sach";
+    }
 	
 	@GetMapping("/sach/edit/{id}")
 	public String editBook(@PathVariable Integer id,
@@ -164,19 +171,21 @@ public class AdminController {
 	        @RequestParam("authorIds") List<Integer> authorIds,
 	        @RequestParam("file") MultipartFile file) {
 		if (!file.isEmpty()) {
+			System.out.println("Có ảnh");
 	        try {
-	            String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
-	            String uploadDir = "D:/book-uploads/"; // ví dụ thư mục lưu
-	            File uploadPath = new File(uploadDir);
-	            if (!uploadPath.exists()) {
-	                uploadPath.mkdirs(); // tạo thư mục nếu chưa có
-	            }
+	        	String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
+               
+	        	File uploadPath = new File(System.getProperty("user.dir"), uploadDir);
+                if (!uploadPath.exists()) {
+                    uploadPath.mkdirs();
+                }
 
-	            File savedFile = new File(uploadDir + filename);
-	            file.transferTo(savedFile);
+                // Lưu file
+                File savedFile = new File(uploadPath, filename);
+                file.transferTo(savedFile);
 
-	            // 2. Gán tên file cho book (để lưu vào DB)
-	            book.setBookImage(filename); // Cột này phải có trong Book model + DB
+                // Lưu đường dẫn ảnh tương đối
+                book.setBookImage(filename);
 
 	        } catch (IOException e) {
 	            e.printStackTrace();

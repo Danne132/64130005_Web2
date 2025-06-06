@@ -11,8 +11,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "book")
@@ -40,6 +43,7 @@ public class Book {
 	private Integer quantity;
 	
 	@Column(name = "last_modified")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date lastModified;
 	
 	@Column(name = "description")
@@ -130,6 +134,11 @@ public class Book {
 		this.description = description;
 	}	
 	
+    @PrePersist
+    protected void onCreate() {
+        lastModified = new Date();
+    }
+
     @PreUpdate
     protected void onUpdate() {
         lastModified = new Date();
